@@ -1,6 +1,38 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark> </v-app-bar>
+    <v-app-bar app color="#FF8900" dark clipped-left>
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-spacer></v-spacer>
+      <v-img :src="logo" max-width="50"></v-img>
+      <h1>HiFood</h1>
+      <v-spacer></v-spacer>
+      <v-btn icon>
+        <v-icon>mdi-logout-variant</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-navigation-drawer color="#E0E0E0" width="20%" app clipped>
+      <v-list-item>
+        <v-list-item-avatar size="50">
+          <v-img :src="user"></v-img>
+        </v-list-item-avatar>
+        <v-list-item-title> Jão da Silva </v-list-item-title>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list>
+        <v-list-item v-for="(item, i) in items" :key="i" link :to="item.path">
+          <v-list-item-icon>
+            <v-icon>{{ item.icone }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.titulo }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
 
     <v-main>
       <router-view />
@@ -9,11 +41,23 @@
 </template>
 
 <script>
-  export default {
-    name: "App",
+export default {
+  name: "App",
 
-    data: () => ({
-      //
-    })
-  }
+  data: () => ({
+    logo: require("./assets/fast-food.png"),
+    user: require("./assets/user.png"),
+    items: [
+      { icone: "mdi-home", titulo: "Home", path: "/" },
+      { icone: "mdi-account-group", titulo: "Clientes", path: "/clientes" },
+      { icone: "mdi-point-of-sale", titulo: "Vendas" },
+      { icone: "mdi-food", titulo: "Produtos" },
+      {
+        icone: "mdi-account-multiple-check",
+        titulo: "Usuários",
+      },
+      { icone: "mdi-chart-line", titulo: "Relatórios" },
+    ],
+  }),
+};
 </script>
