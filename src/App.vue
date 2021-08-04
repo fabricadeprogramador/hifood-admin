@@ -52,7 +52,7 @@ export default {
       { icone: "mdi-home", titulo: "Home", path: "/" },
       { icone: "mdi-account-group", titulo: "Clientes", path: "/clientes" },
       { icone: "mdi-point-of-sale", titulo: "Vendas" },
-      { icone: "mdi-food", titulo: "Produtos" },
+      { icone: "mdi-food", titulo: "Produtos", path: "/produtos" },
       {
         icone: "mdi-account-multiple-check",
         titulo: "Usuários",
