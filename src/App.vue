@@ -51,14 +51,18 @@
 export default {
   name: "App",
   data: () => ({
-    logo: require("./assets/fast-food.png"),
-    user: require("./assets/user.png"),
+    logo: require("./assets/img/fast-food.png"),
+    user: require("./assets/img/user.png"),
     items: [
       { icone: "mdi-home", titulo: "Home", path: "/" },
       { icone: "mdi-account-group", titulo: "Clientes", path: "/clientes" },
       { icone: "mdi-point-of-sale", titulo: "Vendas", path: "/vendas" },
       { icone: "mdi-food", titulo: "Produtos", path: "/produtos" },
-      { icone: "mdi-account-multiple-check", titulo: "Usuários", path: "/usuarios" },
+      {
+        icone: "mdi-account-multiple-check",
+        titulo: "Usuários",
+        path: "/usuarios",
+      },
       { icone: "mdi-chart-line", titulo: "Relatórios", path: "/relatorios" },
     ],
   }),
