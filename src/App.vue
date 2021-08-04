@@ -58,10 +58,7 @@ export default {
       { icone: "mdi-account-group", titulo: "Clientes", path: "/clientes" },
       { icone: "mdi-point-of-sale", titulo: "Vendas", path: "/vendas" },
       { icone: "mdi-food", titulo: "Produtos", path: "/produtos" },
-      {
-        icone: "mdi-account-multiple-check",
-        titulo: "Usuários",
-      },
+      { icone: "mdi-account-multiple-check", titulo: "Usuários", path: "/usuarios" },
       { icone: "mdi-chart-line", titulo: "Relatórios", path: "/relatorios" },
     ],
   }),
