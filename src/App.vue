@@ -68,7 +68,7 @@ export default {
 		items: [
 			{ icone: "mdi-home", titulo: "Home", path: "/" },
 			{ icone: "mdi-account-group", titulo: "Clientes", path: "/clientes" },
-			{ icone: "mdi-point-of-sale", titulo: "Vendas" },
+			{ icone: "mdi-point-of-sale", titulo: "Vendas", path: "/vendas" },
 			{ icone: "mdi-food", titulo: "Produtos", path: "/produtos" },
 			{
 				icone: "mdi-account-multiple-check",
