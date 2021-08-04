@@ -13,12 +13,18 @@
     </v-app-bar>
 
     <v-navigation-drawer color="#0A1330" width="20%" app clipped dark>
-      <v-list-item>
-        <v-list-item-avatar size="50">
+      <v-sheet
+        color="rgba(255, 255, 255, 0.1)"
+        height="150px"
+        align="center"
+        justify="center"
+        class="py-5"
+      >
+        <v-avatar size="80">
           <v-img :src="user"></v-img>
-        </v-list-item-avatar>
-        <v-list-item-title> Jão da Silva </v-list-item-title>
-      </v-list-item>
+        </v-avatar>
+        <h2>Jão da Silva</h2>
+      </v-sheet>
 
       <v-divider></v-divider>
 
