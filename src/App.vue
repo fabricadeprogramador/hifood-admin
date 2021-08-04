@@ -6,12 +6,13 @@
       <v-img :src="logo" max-width="50"></v-img>
       <h1>HiFood</h1>
       <v-spacer></v-spacer>
-      <v-btn icon>
+      <v-btn text small>
+        Logout
         <v-icon>mdi-logout-variant</v-icon>
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer color="#E0E0E0" width="20%" app clipped>
+    <v-navigation-drawer color="#0A1330" width="20%" app clipped dark>
       <v-list-item>
         <v-list-item-avatar size="50">
           <v-img :src="user"></v-img>
