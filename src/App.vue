@@ -23,7 +23,7 @@
         <v-avatar size="80">
           <v-img :src="user"></v-img>
         </v-avatar>
-        <h2>Jão da Silva</h2>
+        <h3>Jão da Silva</h3>
       </v-sheet>
 
       <v-divider></v-divider>

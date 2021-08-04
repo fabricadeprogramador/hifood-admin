@@ -2,11 +2,7 @@
   <v-container>
     <v-row>
       <v-col
-        ><v-card
-          elevation="2"
-          class="mx-auto text-center"
-          color="rgba(100, 100, 100, .5)"
-          dark
+        ><v-card elevation="2" class="mx-auto text-center" color="#ACC2DA" dark
           ><v-card-text>
             <v-sheet color="#FFFFFF">
               <v-sparkline
@@ -36,7 +32,7 @@
             ></v-col
           >
           <v-col
-            ><v-card elevation="2" color="red">
+            ><v-card elevation="2" color="#676D84">
               <v-sheet
                 color="white"
                 elevation="1"
