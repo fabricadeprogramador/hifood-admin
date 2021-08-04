@@ -42,7 +42,9 @@
     </v-navigation-drawer>
 
     <v-main>
-      <router-view />
+      <v-container class="pa-md-9 mx-lg-auto">
+        <router-view />
+      </v-container>
     </v-main>
   </v-app>
 </template>
