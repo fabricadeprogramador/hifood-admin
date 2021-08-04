@@ -1,9 +1,11 @@
 <template>
-
+  <div>RELATÓRIOS</div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Relatorios",
+};
 </script>
 
 <style>
