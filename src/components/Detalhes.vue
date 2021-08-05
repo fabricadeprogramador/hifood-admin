@@ -10,7 +10,7 @@
 		>
 			<v-card>
 				<v-card-title class="headline">Detalhes do Usuário</v-card-title>
-				<v-card-text>{{this.clientes}}</v-card-text>
+				<v-card-text></v-card-text>
 				<v-card-actions>
 					<v-spacer></v-spacer>
 					<v-btn

@@ -16,21 +16,25 @@
 				<v-spacer></v-spacer>
 			</v-toolbar>
 		</template>
-		<template v-slot:item.detalhes="{ item }">
+
+		<template v-slot:item.detalhes>
 			<v-icon
 				small
 				class="mr-2"
-				@click="dialog=true(item)"
-			> mdi-magnify </v-icon>
+				@click="dialog=true"
+			> mdi-magnify
+			</v-icon>
 			<Detalhes :dialog.sync="dialog" />
 		</template>
+
 		<template v-slot:item.compras="{ item }">
 			<v-icon
 				small
 				@click="dialog=true(item)"
 			> mdi-cart-outline </v-icon>
-
+			<Compras />
 		</template>
+
 		<template v-slot:no-data>
 			<v-btn
 				color="primary"
@@ -45,13 +49,9 @@ import Compras from "../components/Compras.vue";
 import Detalhes from "../components/Detalhes.vue";
 
 export default {
+	components: { Detalhes, Compras },
 	name: "Clientes",
 	data: () => ({
-		components: {
-			Compras,
-			Detalhes,
-		},
-
 		dialog: false,
 		headers: [
 			{
