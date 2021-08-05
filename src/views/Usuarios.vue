@@ -2,8 +2,8 @@
   <v-data-table
     :headers="headers"
     :items="desserts"
-    sort-by="calories"
-    class="elevation-1"
+    sort-by="name"
+    class="elevation-8" 
   >
     <template v-slot:top>
       <v-toolbar flat>
@@ -62,7 +62,7 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-checkbox
                       v-model="editedItem.ativo"
-                      :label="`Ativo`"
+                      :label="editedItem.ativo ? 'Ativo' : 'Inativo'"
                     ></v-checkbox>
                   </v-col>
                 </v-row>
@@ -97,12 +97,17 @@
     </template>
     <template v-slot:item.actions="{ item }">
       <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
+    </template>
 
+    <template v-slot:item.status="{ item }">
       <v-checkbox
-        v-model="editedItem.ativo"
-        :label="editedItem.ativo ? 'Ativo' : 'Inativo'"
+        on-icon='mdi-account-check-outline'
+        off-icon='mdi-account-off-outline'
+        v-model="item.ativo"
+        
       ></v-checkbox>
     </template>
+
     <template v-slot:no-data>
       <v-btn color="primary" @click="initialize"> Reset </v-btn>
     </template>
@@ -117,7 +122,8 @@ export default {
     headers: [
       { text: "E-mail", align: "start", sortable: false, value: "email" },
       { text: "Tipo", value: "tipo" },
-      { text: "Ação", value: "actions", sortable: false },
+      { text: "Editar", value: "actions", sortable: false },
+      { text: "Status", value: "status", sortable: false },
     ],
     desserts: [],
     editedIndex: -1,
@@ -221,4 +227,5 @@ export default {
 </script>
 
 <style>
+
 </style>
