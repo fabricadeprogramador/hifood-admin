@@ -1,9 +1,9 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
-    sort-by="calories"
-    class="elevation-1"
+    :items="usuarios"
+    sort-by="name"
+    class="elevation-8" 
   >
     <template v-slot:top>
       <v-toolbar flat>
@@ -62,7 +62,7 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-checkbox
                       v-model="editedItem.ativo"
-                      :label="`Ativo`"
+                      :label="editedItem.ativo ? 'Ativo' : 'Inativo'"
                     ></v-checkbox>
                   </v-col>
                 </v-row>
@@ -97,12 +97,17 @@
     </template>
     <template v-slot:item.actions="{ item }">
       <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
+    </template>
 
+    <template v-slot:item.status="{ item }">
       <v-checkbox
-        v-model="editedItem.ativo"
-        :label="editedItem.ativo ? 'Ativo' : 'Inativo'"
+        on-icon='mdi-account-check-outline'
+        off-icon='mdi-account-off-outline'
+        v-model="item.ativo"
+        
       ></v-checkbox>
     </template>
+
     <template v-slot:no-data>
       <v-btn color="primary" @click="initialize"> Reset </v-btn>
     </template>
@@ -117,9 +122,10 @@ export default {
     headers: [
       { text: "E-mail", align: "start", sortable: false, value: "email" },
       { text: "Tipo", value: "tipo" },
-      { text: "Ação", value: "actions", sortable: false },
+      { text: "Editar", value: "actions", sortable: false },
+      { text: "Status", value: "status", sortable: false },
     ],
-    desserts: [],
+    usuarios: [],
     editedIndex: -1,
     editedItem: {
       nome: "",
@@ -162,7 +168,7 @@ export default {
 
   methods: {
     initialize() {
-      this.desserts = [
+      this.usuarios = [
         {
           nome: "Maria da Silva",
           cpf: "159.075.345-67",
@@ -176,19 +182,19 @@ export default {
     },
 
     editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = this.usuarios.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
 
     deleteItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = this.usuarios.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
 
     deleteItemConfirm() {
-      this.desserts.splice(this.editedIndex, 1);
+      this.usuarios.splice(this.editedIndex, 1);
       this.closeDelete();
     },
 
@@ -210,9 +216,9 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+        Object.assign(this.usuarios[this.editedIndex], this.editedItem);
       } else {
-        this.desserts.push(this.editedItem);
+        this.usuarios.push(this.editedItem);
       }
       this.close();
     },
@@ -221,4 +227,5 @@ export default {
 </script>
 
 <style>
+
 </style>
