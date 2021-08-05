@@ -15,7 +15,7 @@
     <v-navigation-drawer color="#0A1330" width="20%" app clipped dark>
       <v-sheet color="rgba(255, 255, 255, 0.1)">
         <v-container>
-          <v-row style="height: 180px">
+          <v-row style="height: 170px">
             <v-col align-self="center">
               <v-row align="center" justify="center">
                 <v-avatar size="80">
