@@ -1,7 +1,7 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col cols="4"
+  <div>
+    <v-row align="end">
+      <v-col cols="4" align-self="center"
         ><v-card elevation="2" class="mx-auto text-center" color="#FF6600" dark
           ><v-card-text>
             <v-sheet color="#FFFFFF">
@@ -84,7 +84,7 @@
           ></v-sheet></v-card
       ></v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>

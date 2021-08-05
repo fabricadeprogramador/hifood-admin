@@ -13,17 +13,21 @@
     </v-app-bar>
 
     <v-navigation-drawer color="#0A1330" width="20%" app clipped dark>
-      <v-sheet
-        color="rgba(255, 255, 255, 0.1)"
-        height="150px"
-        align="center"
-        justify="center"
-        class="py-5"
-      >
-        <v-avatar size="80">
-          <v-img :src="user"></v-img>
-        </v-avatar>
-        <h3>Jão da Silva</h3>
+      <v-sheet color="rgba(255, 255, 255, 0.1)">
+        <v-container>
+          <v-row style="height: 180px">
+            <v-col align-self="center">
+              <v-row align="center" justify="center">
+                <v-avatar size="80">
+                  <v-img :src="user"></v-img>
+                </v-avatar>
+              </v-row>
+              <v-row align="center" justify="center">
+                <h3 style="margin-top: 10px">Bem vindo, Usuário</h3>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-sheet>
 
       <v-divider></v-divider>
