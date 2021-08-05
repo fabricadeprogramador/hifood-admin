@@ -20,14 +20,16 @@
 			<v-icon
 				small
 				class="mr-2"
-				@click="editItem(item)"
+				@click="dialog=true(item)"
 			> mdi-magnify </v-icon>
+			<Detalhes :dialog.sync="dialog" />
 		</template>
 		<template v-slot:item.compras="{ item }">
 			<v-icon
 				small
-				@click="deleteItem(item)"
+				@click="dialog=true(item)"
 			> mdi-cart-outline </v-icon>
+
 		</template>
 		<template v-slot:no-data>
 			<v-btn
@@ -175,12 +177,6 @@ export default {
 					},
 				},
 			];
-		},
-
-		mostrarCompras() {},
-
-		mostrarDetalhes() {
-			this.$refs.compras.show();
 		},
 	},
 };
