@@ -7,7 +7,7 @@
 	>
 		<template v-slot:top>
 			<v-toolbar flat>
-				<v-toolbar-title>My CRUD</v-toolbar-title>
+				<v-toolbar-title>Clientes Cadastrados</v-toolbar-title>
 				<v-divider
 					class="mx-4"
 					inset
@@ -16,28 +16,24 @@
 				<v-spacer></v-spacer>
 			</v-toolbar>
 		</template>
-		<template v-slot:item.actions="{ item }">
+		<template v-slot:item.detalhes="{ item }">
 			<v-icon
 				small
 				class="mr-2"
 				@click="editItem(item)"
-			>
-				mdi-magnify
-			</v-icon>
+			> mdi-magnify </v-icon>
+		</template>
+		<template v-slot:item.compras="{ item }">
 			<v-icon
 				small
 				@click="deleteItem(item)"
-			>
-				mdi-cart-outline
-			</v-icon>
+			> mdi-cart-outline </v-icon>
 		</template>
 		<template v-slot:no-data>
 			<v-btn
 				color="primary"
 				@click="initialize"
-			>
-				Reset
-			</v-btn>
+			> Reset </v-btn>
 		</template>
 	</v-data-table>
 </template>
@@ -64,7 +60,6 @@ export default {
 			},
 			{ text: "CPF", value: "cpf" },
 			{ text: "Telefone", value: "telefone" },
-			{ text: "RG", value: "rg" },
 			{ text: "Detalhes", value: "detalhes", sortable: false },
 			{ text: "Compras", value: "compras", sortable: false },
 		],
