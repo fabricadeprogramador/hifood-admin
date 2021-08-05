@@ -1,7 +1,7 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
+    :items="usuarios"
     sort-by="name"
     class="elevation-8" 
   >
@@ -125,7 +125,7 @@ export default {
       { text: "Editar", value: "actions", sortable: false },
       { text: "Status", value: "status", sortable: false },
     ],
-    desserts: [],
+    usuarios: [],
     editedIndex: -1,
     editedItem: {
       nome: "",
@@ -168,7 +168,7 @@ export default {
 
   methods: {
     initialize() {
-      this.desserts = [
+      this.usuarios = [
         {
           nome: "Maria da Silva",
           cpf: "159.075.345-67",
@@ -182,19 +182,19 @@ export default {
     },
 
     editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = this.usuarios.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
 
     deleteItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = this.usuarios.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
 
     deleteItemConfirm() {
-      this.desserts.splice(this.editedIndex, 1);
+      this.usuarios.splice(this.editedIndex, 1);
       this.closeDelete();
     },
 
@@ -216,9 +216,9 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+        Object.assign(this.usuarios[this.editedIndex], this.editedItem);
       } else {
-        this.desserts.push(this.editedItem);
+        this.usuarios.push(this.editedItem);
       }
       this.close();
     },
