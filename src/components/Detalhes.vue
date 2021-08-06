@@ -16,7 +16,7 @@
 					<v-btn
 						color="green darken-1"
 						flat
-						@click.native="close"
+						v-on:click.native="close"
 					>Close</v-btn>
 				</v-card-actions>
 			</v-card>

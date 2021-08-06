@@ -17,11 +17,11 @@
 			</v-toolbar>
 		</template>
 
-		<template v-slot:item.detalhes>
+		<template v-slot:item.detalhes="{item}">
 			<v-icon
 				small
 				class="mr-2"
-				@click="dialog=true"
+				@click="abrirDialog(item)"
 			> mdi-magnify
 			</v-icon>
 			<Detalhes :dialog.sync="dialog" />
@@ -177,6 +177,9 @@ export default {
 					},
 				},
 			];
+		},
+		abrirDialog() {
+			this.dialog = true;
 		},
 	},
 };
