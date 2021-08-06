@@ -1,54 +1,49 @@
 <template>
-  <div>
+  <v-div>
     <!-- Divisão superior da tela -->
     <v-row class="pa-5" align="center" justify="center">
-      <v-col cols="3"
+      <v-col
         ><v-card elevation="2" color="#84D2F4" class="text-center pa-3" dark>
           <v-icon size="80px" class="my-2">mdi-account-group</v-icon>
-          <h1>{{ qtdClientes }}</h1>
           <h3>Clientes cadastrados</h3>
+          <h1>{{ qtdClientes }}</h1>
         </v-card></v-col
       >
-      <v-col cols="3"
+      <v-col
         ><v-card elevation="2" color="#039BE5" class="text-center pa-3" dark>
           <v-icon size="80px" class="my-2">mdi-cart-outline</v-icon>
-          <h1>{{ qtdVendas }}</h1>
           <h3>Vendas concluídas</h3>
+          <h1>{{ qtdVendas }}</h1>
         </v-card>
       </v-col>
-      <v-col cols="3"
+      <v-col
         ><v-card elevation="2" color="#0277BD" class="text-center pa-3" dark>
-          <v-icon size="80px" class="my-2">mdi-cart-outline</v-icon>
-          <h1>{{ qtdVendas }}</h1>
-          <h3>Vendas concluídas</h3>
+          <v-icon size="80px" class="my-2">mdi-podium-gold</v-icon>
+          <h3>Produto mais vendido</h3>
+          <h1>{{ top1 }}</h1>
         </v-card>
       </v-col>
-      <v-col cols="3"
+      <v-col
         ><v-card elevation="2" color="#01579B" class="text-center pa-3" dark>
-          <v-icon size="80px" class="my-2">mdi-cart-outline</v-icon>
-          <h1>{{ qtdVendas }}</h1>
-          <h3>Vendas concluídas</h3>
+          <v-icon size="80px" class="my-2">mdi-cash-multiple</v-icon>
+          <h3>Valor total das vendas</h3>
+          <h1>R$ {{ valorVendas }}</h1>
         </v-card>
       </v-col>
     </v-row>
     <!-- Divisão inferior da tela -->
     <v-row class="pa-5" align="center" justify="center">
       <!-- Coluna 1 -->
-      <v-col cols="4">
-        <v-card
-          elevation="2"
-          class="text-center"
-          color="#FFD180"
-          width="100%"
-          dark
+      <v-col>
+        <v-card elevation="2" class="text-center" color="#FFD180" width="100%"
           ><v-card-text>
             <v-sheet color="#FFFFFF">
               <v-sparkline
                 :value="value"
                 color="rgba(0, 0, 0, .7)"
-                height="150"
                 padding="24"
                 smooth
+                height="150"
               >
                 <template v-slot:label="item"> R${{ item.value }} </template>
               </v-sparkline>
@@ -56,12 +51,12 @@
           </v-card-text>
 
           <v-card-text>
-            <div class="text-h4 font-weight-thin">Vendas no último mês</div>
+            <div class="text-h4">{{ dataCompleta }}</div>
           </v-card-text>
         </v-card>
       </v-col>
       <!-- Coluna 2 -->
-      <v-col cols="4">
+      <v-col>
         <v-card
           elevation="2"
           class="text-center"
@@ -72,7 +67,7 @@
             <v-sheet color="#FFFFFF">
               <v-sparkline
                 :value="value"
-                color="rgba(0, 0, 0, .7)"
+                color="#0A1330"
                 height="150"
                 padding="24"
                 smooth
@@ -83,12 +78,12 @@
           </v-card-text>
 
           <v-card-text>
-            <div class="text-h4 font-weight-thin">Vendas no último mês</div>
+            <div class="text-h4">Vendas no último mês</div>
           </v-card-text>
         </v-card>
       </v-col>
       <!-- Coluna 3 -->
-      <v-col cols="4">
+      <v-col>
         <v-card
           elevation="2"
           class="text-center"
@@ -110,32 +105,12 @@
           </v-card-text>
 
           <v-card-text>
-            <div class="text-h4 font-weight-thin">Vendas no último mês</div>
+            <div class="text-h4">Vendas no último mês</div>
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
-
-    <!-- Divisão inferior dos quadros -->
-    <v-container style="background-color: black">
-      <v-row class="pa-5">
-        <v-col
-          ><v-card elevation="2"
-            ><v-sheet color="white" elevation="1" width="100%"
-              >Teste</v-sheet
-            ></v-card
-          ></v-col
-        >
-        <v-col
-          ><v-card elevation="2"
-            ><v-sheet color="white" elevation="1" width="100%"
-              >Teste</v-sheet
-            ></v-card
-          ></v-col
-        >
-      </v-row>
-    </v-container>
-  </div>
+  </v-div>
 </template>
 
 <script>
@@ -144,7 +119,20 @@ export default {
   data: () => ({
     qtdClientes: 1367,
     qtdVendas: 1792,
+    valorVendas: "10.371,53",
+    top1: "Produto 1",
+    dataCompleta: "",
     value: [423, 446, 675, 510, 590, 610, 760],
   }),
+  methods: {
+    horaAtual() {
+      let data = new Date();
+      let dia = data.getDate();
+      this.dataCompleta = dia;
+    },
+  },
+  mounted() {
+    this.horaAtual();
+  },
 };
 </script>
