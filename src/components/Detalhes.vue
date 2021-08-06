@@ -23,6 +23,28 @@
 				<v-card-text>
 					Telefone: {{clienteAtual.telefone}}
 				</v-card-text>
+				<v-card-text>
+					RG: {{clienteAtual.rg}}
+				</v-card-text>
+				<v-card-text>
+					Data de Nascimento: {{clienteAtual.dataNasc}}
+				</v-card-text>
+				<v-card-title>Endereço</v-card-title>
+				<v-card-text>
+					CEP: {{clienteAtual.endereco.cep}}
+				</v-card-text>
+				<v-card-text>
+					Cidade: {{clienteAtual.endereco.cidade}}
+				</v-card-text>
+				<v-card-text>
+					UF: {{clienteAtual.endereco.uf}}
+				</v-card-text>
+				<v-card-text>
+					Rua: {{clienteAtual.endereco.rua}}
+				</v-card-text>
+				<v-card-text>
+					Número: {{clienteAtual.endereco.num}}
+				</v-card-text>
 				<v-card-actions>
 					<v-spacer></v-spacer>
 					<v-btn
