@@ -71,13 +71,13 @@
       <v-alert
         v-if="msg"
         class="mt-6"
-        type="error"
-        v-model="alert"
+        type="success"
         border="left"
         close-text="Close Alert"
         dark
         dismissible
-        >Produto ja existe na base.</v-alert
+        @click="fechaMsg()"
+        >Produto adicionado com sucesso.</v-alert
       >
 
       <!-- {{ arrayProdutos }} -->
@@ -88,10 +88,10 @@
 <script>
 export default {
   props: ["arrayProdutos"],
-  msg: false,
 
   data: () => ({
     produtoAtual: {},
+    msg: false,
   }),
 
   methods: {
@@ -103,20 +103,23 @@ export default {
       if (this.validar(this.produtoAtual)) {
         this.arrayProdutos.push(this.produtoAtual);
         this.produtoAtual = {};
-        this.msg = false;
+        this.msg = true;
       }
     },
 
     validar(p) {
       for (let i = 0; i < this.arrayProdutos.length; i++) {
         if (this.arrayProdutos[i].nome == p.nome) {
-          this.msg = true;
-          return false;
+          return false
         }
       }
 
       return true;
     },
+
+    fechaMsg() {
+      this.msg = false;
+    }
   },
 };
 </script>

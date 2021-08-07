@@ -13,7 +13,9 @@
           <v-card class="pa-2" outlined tile> Filtros </v-card>
         </v-col>
         <v-col>
-          <v-btn @click="addProduto()"><v-icon>mdi-plus</v-icon> Adicionar</v-btn>
+          <v-btn @click="btnAddProduto()">
+            <v-icon>mdi-plus</v-icon> Adicionar
+          </v-btn>
         </v-col>
       </v-row>
 
@@ -37,20 +39,34 @@
     </template>
 
     <template v-else>
-      <produtoAdd :arrayProdutos="produtos" @voltarPrincipal="fechaComponenteProdutoAdd" />
+      <produtoAdd
+        v-if="exibeComponentProdutoAdd"
+        :arrayProdutos="produtos"
+        @voltarPrincipal="fechaComponenteProdutoAdd"
+      />
+
+      <produtoEdit 
+        v-if="exibeComponentProdutoEdit"
+      />
     </template>
   </div>
 </template>
 
 <script>
 import produtoAdd from "../components/ProdutoAdd.vue";
+import produtoEdit from "../components/ProdutoEdit.vue";
 
 export default {
-  components: { produtoAdd },
+  components: { produtoAdd, produtoEdit },
   name: "Produtos",
 
   data() {
     return {
+      exibeListaProdutos: true,
+      exibeComponentProdutoAdd: false,
+      exibeComponentProdutoEdit: false,
+      produtos: [],
+
       headers: [
         {
           text: "Produto",
@@ -64,33 +80,26 @@ export default {
         { text: "Qtd Disponivel", value: "qtdDisponivel" },
         { text: "Ações", value: "actions", sortable: false },
       ],
-
-      produtos: [
-        // {
-        //   nome: "Hot-Dog Simplão",
-        //   descricao: "Pão, Hamburguer, Queijo, Batata Palha",
-        //   valor: 15.95,
-        //   categoria: "Lanche",
-        //   qtdDisponivel: 4,
-        // },
-      ],
-
-      exibeListaProdutos: true
     };
   },
 
   methods: {
-    addProduto() {
+    btnAddProduto() {
       this.exibeListaProdutos = false;
+      this.exibeComponentProdutoAdd = true;
     },
 
     fechaComponenteProdutoAdd() {
-        this.exibeListaProdutos = true;
+      this.exibeListaProdutos = true;
+      this.exibeComponentProdutoAdd = false;
     },
 
     editItem(item) {
-      console.log(item)
-    }
+      this.exibeListaProdutos = false;
+      this.exibeComponentProdutoEdit = true;
+
+      item.nome
+    },
   },
 };
 </script>
