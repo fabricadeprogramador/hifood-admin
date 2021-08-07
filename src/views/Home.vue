@@ -1,43 +1,103 @@
 <template>
   <v-div>
     <!-- Divisão superior da tela -->
-    <v-row class="pa-5" align="center" justify="center">
-      <v-col
-        ><v-card elevation="2" color="#84D2F4" class="text-center pa-3" dark>
-          <v-icon size="80px" class="my-2">mdi-account-group</v-icon>
+    <v-row
+      class="pt-2"
+      align="center"
+      justify="center"
+    >
+      <v-col>
+        <v-card
+          elevation="2"
+          color="#B71C1C"
+          class="text-center pa-3"
+          dark
+        >
+          <v-icon
+            size="80px"
+            class="my-2"
+          >mdi-food</v-icon>
+          <h3>Produtos cadastrados</h3>
+          <h1>{{ qtdProdutos }}</h1>
+        </v-card>
+      </v-col>
+      <v-col>
+        <v-card
+          elevation="2"
+          color="#880E4F"
+          class="text-center pa-3"
+          dark
+        >
+          <v-icon
+            size="80px"
+            class="my-2"
+          >mdi-account-group</v-icon>
           <h3>Clientes cadastrados</h3>
           <h1>{{ qtdClientes }}</h1>
-        </v-card></v-col
-      >
-      <v-col
-        ><v-card elevation="2" color="#039BE5" class="text-center pa-3" dark>
-          <v-icon size="80px" class="my-2">mdi-cart-outline</v-icon>
+        </v-card>
+      </v-col>
+      <v-col>
+        <v-card
+          elevation="2"
+          color="#4A148C"
+          class="text-center pa-3"
+          dark
+        >
+          <v-icon
+            size="80px"
+            class="my-2"
+          >mdi-cart-outline</v-icon>
           <h3>Vendas concluídas</h3>
           <h1>{{ qtdVendas }}</h1>
         </v-card>
       </v-col>
-      <v-col
-        ><v-card elevation="2" color="#0277BD" class="text-center pa-3" dark>
-          <v-icon size="80px" class="my-2">mdi-podium-gold</v-icon>
-          <h3>Produto mais vendido</h3>
-          <h1>{{ top1 }}</h1>
-        </v-card>
-      </v-col>
-      <v-col
-        ><v-card elevation="2" color="#01579B" class="text-center pa-3" dark>
-          <v-icon size="80px" class="my-2">mdi-cash-multiple</v-icon>
+      <v-col>
+        <v-card
+          elevation="2"
+          color="#311B92"
+          class="text-center pa-3"
+          dark
+        >
+          <v-icon
+            size="80px"
+            class="my-2"
+          >mdi-cash-multiple</v-icon>
           <h3>Valor total das vendas</h3>
           <h1>R$ {{ valorVendas }}</h1>
         </v-card>
       </v-col>
     </v-row>
-    <!-- Divisão inferior da tela -->
-    <v-row class="pa-5" align="center" justify="center">
+    <!-- Divisão intermediária da tela -->
+    <v-row
+      class="pt-2"
+      align="center"
+      justify="center"
+    >
       <!-- Coluna 1 -->
       <v-col>
-        <v-card elevation="2" class="text-center" color="#FFD180" width="100%"
-          ><v-card-text>
-            <v-sheet color="#FFFFFF" height="270"> </v-sheet>
+        <v-card
+          elevation="2"
+          class="text-center"
+          color="#1A237E"
+          width="100%"
+          dark
+        >
+          <v-card-text>
+            <v-sheet
+              color="#FFFFFF"
+              height="270"
+              light
+            >
+              <img
+                src="../assets/img/circular-clock.png"
+                alt="Imagem de um relógio"
+                style="width: 180px"
+                class="my-3"
+              />
+              <div class="text-h4">
+                {{ date.hora }}:{{ date.minuto }}:{{ date.segundo }}
+              </div>
+            </v-sheet>
           </v-card-text>
 
           <v-card-text>
@@ -52,10 +112,11 @@
         <v-card
           elevation="2"
           class="text-center"
-          color="#FFAB40"
+          color="#0D47A1"
           width="100%"
           dark
-          ><v-card-text>
+        >
+          <v-card-text>
             <v-sheet color="#FFFFFF">
               <v-sparkline
                 :value="value"
@@ -79,10 +140,11 @@
         <v-card
           elevation="2"
           class="text-center"
-          color="#FF6600"
+          color="#01579B"
           width="100%"
           dark
-          ><v-card-text>
+        >
+          <v-card-text>
             <v-sheet color="#FFFFFF">
               <v-sparkline
                 :value="value"
@@ -102,6 +164,73 @@
         </v-card>
       </v-col>
     </v-row>
+    <!-- Divisão inferior da tela -->
+    <v-row
+      class="pt-2"
+      align="center"
+      justify="center"
+    >
+      <v-col>
+        <v-card
+          elevation="2"
+          color="#FF8F00"
+          class="text-center pa-3"
+          dark
+        >
+          <v-icon
+            size="80px"
+            class="my-2"
+          >mdi-account-group</v-icon>
+          <h3>Clientes cadastrados</h3>
+          <h1>{{ qtdClientes }}</h1>
+        </v-card>
+      </v-col>
+      <v-col>
+        <v-card
+          elevation="2"
+          color="#388E3C"
+          class="text-center pa-3"
+          dark
+        >
+          <v-icon
+            size="80px"
+            class="my-2"
+          >mdi-cart-outline</v-icon>
+          <h3>Vendas concluídas</h3>
+          <h1>{{ qtdVendas }}</h1>
+        </v-card>
+      </v-col>
+      <v-col>
+        <v-card
+          elevation="2"
+          color="#00838F"
+          class="text-center pa-3"
+          dark
+        >
+          <v-icon
+            size="80px"
+            class="my-2"
+          >mdi-podium-gold</v-icon>
+          <h3>Produto mais vendido</h3>
+          <h1>{{ top1 }}</h1>
+        </v-card>
+      </v-col>
+      <v-col>
+        <v-card
+          elevation="2"
+          color="#006064"
+          class="text-center pa-3"
+          dark
+        >
+          <v-icon
+            size="80px"
+            class="my-2"
+          >mdi-cash-multiple</v-icon>
+          <h3>Valor total das vendas</h3>
+          <h1>R$ {{ valorVendas }}</h1>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-div>
 </template>
 
@@ -109,12 +238,12 @@
 export default {
   name: "Home",
   data: () => ({
-    relogio: require("./assets/img/circular-clock.png"),
     qtdClientes: 1367,
+    qtdProdutos: 67,
     qtdVendas: 1792,
     valorVendas: "10.371,53",
     top1: "Produto 1",
-    date: { dia: "", mes: "", ano: "" },
+    date: { dia: "", mes: "", ano: "", hora: "", minuto: "", segundo: "" },
     value: [423, 446, 675, 510, 590, 610, 760],
   }),
   methods: {
@@ -123,6 +252,9 @@ export default {
       let dia = data.getDate();
       let mes = data.getMonth();
       let ano = data.getFullYear();
+      let hora = data.getHours();
+      let minuto = data.getMinutes();
+      let segundo = data.getSeconds();
       this.date.dia = dia;
       switch (mes) {
         case 0:
@@ -165,6 +297,9 @@ export default {
           break;
       }
       this.date.ano = ano;
+      this.date.hora = hora;
+      this.date.minuto = minuto;
+      this.date.segundo = segundo;
     },
   },
   mounted() {

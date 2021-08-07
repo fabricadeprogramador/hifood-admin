@@ -2,7 +2,6 @@
   <v-app>
     <v-app-bar app color="#FF8900" dark clipped-left height="80px">
       <v-app-bar-nav-icon @click="ocultarMenu"></v-app-bar-nav-icon>
-      <v-spacer></v-spacer>
       <v-img :src="logo" max-width="70"></v-img>
       <h1 style="font-size: 40px">HiFood</h1>
       <v-spacer></v-spacer>
@@ -14,7 +13,7 @@
 
     <v-navigation-drawer
       color="#0A1330"
-      width="20%"
+      width="300px"
       app
       clipped
       dark
