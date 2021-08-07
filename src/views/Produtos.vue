@@ -42,11 +42,14 @@
       <produtoAdd
         v-if="exibeComponentProdutoAdd"
         :arrayProdutos="produtos"
-        @voltarPrincipal="fechaComponenteProdutoAdd"
+        :arrayCategoria="categoriaProdutos"
+        @voltarPrincipal="fechaComponenteProdutoAdd()"
       />
 
       <produtoEdit 
         v-if="exibeComponentProdutoEdit"
+        :objProdutoEdit="produtoEdit"
+        @voltarPrincipal="fechaComponenteProdutoEdit()"
       />
     </template>
   </div>
@@ -66,6 +69,15 @@ export default {
       exibeComponentProdutoAdd: false,
       exibeComponentProdutoEdit: false,
       produtos: [],
+      produtoEdit: {},
+      categoriaProdutos: [
+        "Lanches", 
+        "Bebidas",
+        "Pizzas",
+        "Pratos",
+        "Sobremesas",
+        "Porções"
+      ],
 
       headers: [
         {
@@ -94,11 +106,16 @@ export default {
       this.exibeComponentProdutoAdd = false;
     },
 
+    fechaComponenteProdutoEdit() {
+      this.exibeListaProdutos = true;
+      this.exibeComponentProdutoEdit = false;
+    },
+
     editItem(item) {
       this.exibeListaProdutos = false;
       this.exibeComponentProdutoEdit = true;
 
-      item.nome
+      this.produtoEdit = item;
     },
   },
 };

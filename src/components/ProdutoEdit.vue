@@ -3,7 +3,7 @@
     <template>
       <v-row>
         <v-col>
-          <h1>Produtos <v-icon>mdi-chevron-right</v-icon> editar <v-icon>mdi-chevron-right</v-icon> nome</h1>
+          <h1>Produtos <v-icon>mdi-chevron-right</v-icon> editar <v-icon>mdi-chevron-right</v-icon> {{objProdutoEdit.nome}}</h1>
           <p>Aqui você pode alterar as informações do seu produto</p>
         </v-col>
       </v-row>
@@ -23,13 +23,13 @@
               <v-form>
                 <v-text-field
                   label="Nome do produto"
-                  v-model="produtoAtual.nome"
+                  v-model="objProdutoEdit.nome"
                   required
                 ></v-text-field>
 
                 <v-text-field
                   label="Descrição"
-                  v-model="produtoAtual.descricao"
+                  v-model="objProdutoEdit.descricao"
                   required
                 ></v-text-field>
 
@@ -37,7 +37,7 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
                       label="Valor"
-                      v-model="produtoAtual.valor"
+                      v-model="objProdutoEdit.valor"
                       required
                     ></v-text-field>
                   </v-col>
@@ -45,7 +45,7 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-select
                       label="categoria"
-                      v-model="produtoAtual.categoria"
+                      v-model="objProdutoEdit.categoria"
                       required
                     ></v-select>
                   </v-col>
@@ -53,14 +53,14 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
                       label="Quantidade Disponível"
-                      v-model="produtoAtual.qtdDisponivel"
+                      v-model="objProdutoEdit.qtdDisponivel"
                       required
                     ></v-text-field>
                   </v-col>
                 </v-row>
 
                 <v-btn color="#232B45" dark class="mr-4" @click="salvar()">
-                  Adicionar
+                  Atualizar
                 </v-btn>
               </v-form>
             </v-card-text>
@@ -79,13 +79,15 @@
           </v-card>
         </v-col>
       </v-row>
+
+      <!-- {{objProdutoEdit}} -->
     </template>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["arrayProdutos"],
+  props: ["objProdutoEdit"],
 
   data: () => ({
     produtoAtual: {},

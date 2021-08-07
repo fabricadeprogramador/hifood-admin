@@ -81,17 +81,26 @@
       >
 
       <!-- {{ arrayProdutos }} -->
+      {{ arrayCategoria }}
     </template>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["arrayProdutos"],
+  props: ["arrayProdutos", "arrayCategoria"],
 
   data: () => ({
     produtoAtual: {},
     msg: false,
+    select: null,
+      items: [
+        'Item 1',
+        'Item 2',
+        'Item 3',
+        'Item 4',
+      ],
+      checkbox: false,
   }),
 
   methods: {
@@ -110,7 +119,7 @@ export default {
     validar(p) {
       for (let i = 0; i < this.arrayProdutos.length; i++) {
         if (this.arrayProdutos[i].nome == p.nome) {
-          return false
+          return false;
         }
       }
 
@@ -119,7 +128,7 @@ export default {
 
     fechaMsg() {
       this.msg = false;
-    }
+    },
   },
 };
 </script>
