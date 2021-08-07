@@ -37,7 +37,7 @@
     </template>
 
     <template v-else>
-      <produtoAdd @voltarPrincipal="fechaComponenteProdutoAdd" />
+      <produtoAdd :arrayProdutos="produtos" @voltarPrincipal="fechaComponenteProdutoAdd" />
     </template>
   </div>
 </template>
@@ -66,13 +66,13 @@ export default {
       ],
 
       produtos: [
-        {
-          nome: "Hot-Dog Simplão",
-          descricao: "Pão, Hamburguer, Queijo, Batata Palha",
-          valor: 15.95,
-          categoria: "Lanche",
-          qtdDisponivel: 4,
-        },
+        // {
+        //   nome: "Hot-Dog Simplão",
+        //   descricao: "Pão, Hamburguer, Queijo, Batata Palha",
+        //   valor: 15.95,
+        //   categoria: "Lanche",
+        //   qtdDisponivel: 4,
+        // },
       ],
 
       exibeListaProdutos: true
@@ -86,6 +86,10 @@ export default {
 
     fechaComponenteProdutoAdd() {
         this.exibeListaProdutos = true;
+    },
+
+    editItem(item) {
+      console.log(item)
     }
   },
 };

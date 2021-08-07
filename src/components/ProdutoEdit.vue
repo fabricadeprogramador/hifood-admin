@@ -3,8 +3,8 @@
     <template>
       <v-row>
         <v-col>
-          <h1>Produtos <v-icon>mdi-chevron-right</v-icon> adicionar</h1>
-          <p>Aqui adicionamos seus produtos</p>
+          <h1>Produtos <v-icon>mdi-chevron-right</v-icon> editar <v-icon>mdi-chevron-right</v-icon> nome</h1>
+          <p>Aqui você pode alterar as informações do seu produto</p>
         </v-col>
       </v-row>
 
@@ -17,7 +17,7 @@
       </v-row>
 
       <v-row>
-        <v-col sm="12" md="12">
+        <v-col sm="12" md="9">
           <v-card>
             <v-card-text>
               <v-form>
@@ -66,21 +66,19 @@
             </v-card-text>
           </v-card>
         </v-col>
+        <v-col>
+          <v-card class="mx-auto" max-width="344">
+            <v-img
+              src="https://lh3.googleusercontent.com/proxy/lObrxfTa9Pq3b4kCUqHTsooUIvB89XeMGwbZPUbuJpqBxuYjcYl2ON7RgW3KN6rX9AcHxeSSXqLVIwmaPwKJNRTwGS7bF4PSKztgiNVILV73Xeo_mYo3QPvnekfKPlbfpFl3p-TNNbX3B25XsMezKnZ8Ob8PluqIxdkArhbx1BUtmoROIXHaNYetQSF0k_DjnCFvsCug1z7B"
+              height="190px"
+            ></v-img>
+
+            <v-card-title>Enviar imagem</v-card-title>
+
+            <v-card-subtitle>Adicione uma nova foto</v-card-subtitle>
+          </v-card>
+        </v-col>
       </v-row>
-
-      <v-alert
-        v-if="msg"
-        class="mt-6"
-        type="error"
-        v-model="alert"
-        border="left"
-        close-text="Close Alert"
-        dark
-        dismissible
-        >Produto ja existe na base.</v-alert
-      >
-
-      <!-- {{ arrayProdutos }} -->
     </template>
   </div>
 </template>
@@ -88,7 +86,6 @@
 <script>
 export default {
   props: ["arrayProdutos"],
-  msg: false,
 
   data: () => ({
     produtoAtual: {},
@@ -99,24 +96,7 @@ export default {
       this.$emit("voltarPrincipal");
     },
 
-    salvar() {
-      if (this.validar(this.produtoAtual)) {
-        this.arrayProdutos.push(this.produtoAtual);
-        this.produtoAtual = {};
-        this.msg = false;
-      }
-    },
-
-    validar(p) {
-      for (let i = 0; i < this.arrayProdutos.length; i++) {
-        if (this.arrayProdutos[i].nome == p.nome) {
-          this.msg = true;
-          return false;
-        }
-      }
-
-      return true;
-    },
+    atualizar() {}
   },
 };
 </script>
