@@ -117,12 +117,15 @@
           dark
         >
           <v-card-text>
-            <v-sheet color="#FFFFFF">
+            <v-sheet
+              color="#FFFFFF"
+              height="270"
+            >
               <v-sparkline
                 :value="value"
                 color="#0A1330"
-                height="150"
-                padding="24"
+                height="140"
+                padding="20"
                 smooth
               >
                 <template v-slot:label="item"> R${{ item.value }} </template>
@@ -145,12 +148,15 @@
           dark
         >
           <v-card-text>
-            <v-sheet color="#FFFFFF">
+            <v-sheet
+              color="#FFFFFF"
+              height="270px"
+            >
               <v-sparkline
                 :value="value"
                 color="rgba(0, 0, 0, .7)"
-                height="150"
-                padding="24"
+                height="140"
+                padding="20"
                 smooth
               >
                 <template v-slot:label="item"> R${{ item.value }} </template>
