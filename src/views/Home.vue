@@ -79,13 +79,12 @@
           elevation="2"
           class="text-center"
           color="#1A237E"
-          width="100%"
           dark
         >
           <v-card-text>
             <v-sheet
               color="#FFFFFF"
-              height="270"
+              height="260"
               light
             >
               <img
@@ -113,18 +112,17 @@
           elevation="2"
           class="text-center"
           color="#0D47A1"
-          width="100%"
           dark
         >
           <v-card-text>
             <v-sheet
               color="#FFFFFF"
-              height="270"
+              height="260"
             >
               <v-sparkline
                 :value="value"
                 color="#0A1330"
-                height="140"
+                height="135"
                 padding="20"
                 smooth
               >
@@ -144,28 +142,18 @@
           elevation="2"
           class="text-center"
           color="#01579B"
-          width="100%"
           dark
         >
           <v-card-text>
             <v-sheet
               color="#FFFFFF"
-              height="270px"
+              height="260px"
             >
-              <v-sparkline
-                :value="value"
-                color="rgba(0, 0, 0, .7)"
-                height="140"
-                padding="20"
-                smooth
-              >
-                <template v-slot:label="item"> R${{ item.value }} </template>
-              </v-sparkline>
             </v-sheet>
           </v-card-text>
 
           <v-card-text>
-            <div class="text-h4">Vendas no último mês</div>
+            <div class="text-h4">Título do card</div>
           </v-card-text>
         </v-card>
       </v-col>
@@ -186,30 +174,15 @@
           <v-icon
             size="80px"
             class="my-2"
-          >mdi-account-group</v-icon>
-          <h3>Clientes cadastrados</h3>
-          <h1>{{ qtdClientes }}</h1>
+          >mdi-help</v-icon>
+          <h3>Título do card</h3>
+          <h1>{{ qtdTeste }}</h1>
         </v-card>
       </v-col>
       <v-col>
         <v-card
           elevation="2"
           color="#388E3C"
-          class="text-center pa-3"
-          dark
-        >
-          <v-icon
-            size="80px"
-            class="my-2"
-          >mdi-cart-outline</v-icon>
-          <h3>Vendas concluídas</h3>
-          <h1>{{ qtdVendas }}</h1>
-        </v-card>
-      </v-col>
-      <v-col>
-        <v-card
-          elevation="2"
-          color="#00838F"
           class="text-center pa-3"
           dark
         >
@@ -224,6 +197,21 @@
       <v-col>
         <v-card
           elevation="2"
+          color="#00838F"
+          class="text-center pa-3"
+          dark
+        >
+          <v-icon
+            size="80px"
+            class="my-2"
+          >mdi-help</v-icon>
+          <h3>Título do card</h3>
+          <h1>{{ qtdTeste }}</h1>
+        </v-card>
+      </v-col>
+      <v-col>
+        <v-card
+          elevation="2"
           color="#006064"
           class="text-center pa-3"
           dark
@@ -231,9 +219,9 @@
           <v-icon
             size="80px"
             class="my-2"
-          >mdi-cash-multiple</v-icon>
-          <h3>Valor total das vendas</h3>
-          <h1>R$ {{ valorVendas }}</h1>
+          >mdi-help</v-icon>
+          <h3>Título do card</h3>
+          <h1>{{ qtdTeste }}</h1>
         </v-card>
       </v-col>
     </v-row>
@@ -248,6 +236,7 @@ export default {
     qtdProdutos: 67,
     qtdVendas: 1792,
     valorVendas: "10.371,53",
+    qtdTeste: 0,
     top1: "Produto 1",
     date: { dia: "", mes: "", ano: "", hora: "", minuto: "", segundo: "" },
     value: [423, 446, 675, 510, 590, 610, 760],

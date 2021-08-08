@@ -1,22 +1,33 @@
 <template>
   <v-card>
     <v-card-actions>
-      <v-btn color="#232B45" class="ma-3" dark @click="voltarClientes"
-        >Voltar</v-btn
-      >
+      <v-btn
+        color="#232B45"
+        class="ma-3"
+        dark
+        @click="voltarClientes"
+      >Voltar</v-btn>
     </v-card-actions>
     <v-data-table
       :headers="headers"
-      :items="compras"
+      :items="comprasCliente"
       :items-per-page="10"
       class="elevation-1"
-      ><template v-slot:top>
+    ><template v-slot:top>
         <v-toolbar flat>
           <v-toolbar-title>Compras cadastradas</v-toolbar-title>
-          <v-divider class="mx-4" inset vertical></v-divider>
+          <v-divider
+            class="mx-4"
+            inset
+            vertical
+          ></v-divider>
+          <v-toolbar-title>{{cliente}}</v-toolbar-title>
           <v-spacer></v-spacer>
-        </v-toolbar> </template
-    ></v-data-table>
+        </v-toolbar>
+      </template> <template v-slot:item.detalhes="{}">
+        <v-icon size="25px"> mdi-magnify </v-icon>
+      </template>
+    </v-data-table>
   </v-card>
 </template>
 
@@ -24,23 +35,26 @@
 export default {
   name: "Compras",
   props: {
-    clienteAtual: {
-      default: {},
+    cliente: {
+      default: "",
+    },
+    comprasCliente: {
+      default: [],
     },
   },
   data() {
     return {
       headers: [
         {
-          text: "Cliente",
+          text: "CPF",
           align: "start",
           sortable: false,
-          value: "nome",
+          value: "cpf",
         },
         { text: "Data", value: "data" },
-        { text: "Quantidade", value: "quantidade" },
-        { text: "Valor total", value: "valor" },
-        { text: "Produtos", value: "produto" },
+        { text: "Quantidade", value: "qtdTotal" },
+        { text: "Valor total", value: "valorTotal" },
+        { text: "Detalhes", value: "detalhes" },
       ],
     };
   },

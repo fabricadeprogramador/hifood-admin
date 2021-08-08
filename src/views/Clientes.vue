@@ -69,7 +69,8 @@
     </v-data-table>
     <Compras
       v-else
-      :clienteAtual="cliente"
+      :cliente="clienteAtual.nome"
+      :comprasCliente="comprasClienteAtual"
       @voltar-clientes="fecharJanelaCompras"
     />
   </div>
@@ -98,11 +99,10 @@ export default {
       { text: "Compras", value: "compras", sortable: false },
     ],
     clientes: [],
-    cliente: {},
     clienteAtual: {
       nome: "",
       email: "",
-      cpf: "",
+      cpf: 0,
       telefone: "",
       rg: "",
       dataNasc: "",
@@ -115,6 +115,91 @@ export default {
         num: "",
       },
     },
+    comprasClienteAtual: [],
+    compras: [
+      {
+        cpf: "123.456.789-10",
+        data: "06/10/2020",
+        produtos: [
+          { nomeProduto: "Produto 1", qtd: 1, valor: 20 },
+          { nomeProduto: "Produto 2", qtd: 1, valor: 16 },
+        ],
+        valorTotal: 0,
+        qtdTotal: 0,
+      },
+      {
+        cpf: "123.456.789-10",
+        data: "01/03/2021",
+        produtos: [
+          { nomeProduto: "Produto 1", qtd: 1, valor: 20 },
+          { nomeProduto: "Produto 2", qtd: 2, valor: 16 },
+          { nomeProduto: "Produto 3", qtd: 1, valor: 13 },
+        ],
+        valorTotal: 0,
+        qtdTotal: 0,
+      },
+      {
+        cpf: "719.876.543-21",
+        data: "09/04/2021",
+        produtos: [
+          { nomeProduto: "Produto 1", qtd: 1, valor: 17 },
+          { nomeProduto: "Produto 2", qtd: 1, valor: 8 },
+          { nomeProduto: "Produto 3", qtd: 1, valor: 2 },
+        ],
+        valorTotal: 0,
+        qtdTotal: 0,
+      },
+      {
+        cpf: "167.138.789-44",
+        data: "03/07/2021",
+        produtos: [{ nomeProduto: "Produto 1", qtd: 1, valor: 9 }],
+        valorTotal: 0,
+        qtdTotal: 0,
+      },
+      {
+        cpf: "121.212.343-33",
+        data: "24/02/2021",
+        produtos: [
+          { nomeProduto: "Produto 1", qtd: 1, valor: 21 },
+          { nomeProduto: "Produto 2", qtd: 2, valor: 16 },
+          { nomeProduto: "Produto 3", qtd: 1, valor: 2 },
+        ],
+        valorTotal: 0,
+        qtdTotal: 0,
+      },
+      {
+        cpf: "934.456.731-05",
+        data: "03/10/2020",
+        produtos: [
+          { nomeProduto: "Produto 1", qtd: 1, valor: 21 },
+          { nomeProduto: "Produto 2", qtd: 2, valor: 16 },
+          { nomeProduto: "Produto 3", qtd: 1, valor: 2 },
+          { nomeProduto: "Produto 4", qtd: 2, valor: 32 },
+        ],
+        valorTotal: 0,
+        qtdTotal: 0,
+      },
+      {
+        cpf: "134.671.167-15",
+        data: "08/05/2021",
+        produtos: [
+          { nomeProduto: "Produto 1", qtd: 3, valor: 17 },
+          { nomeProduto: "Produto 2", qtd: 2, valor: 21 },
+        ],
+        valorTotal: 0,
+        qtdTotal: 0,
+      },
+      {
+        cpf: "239.456.789-37",
+        data: "01/03/2021",
+        produtos: [
+          { nomeProduto: "Produto 1", qtd: 4, valor: 20 },
+          { nomeProduto: "Produto 2", qtd: 2, valor: 13 },
+        ],
+        valorTotal: 0,
+        qtdTotal: 0,
+      },
+    ],
   }),
 
   created() {
@@ -127,7 +212,7 @@ export default {
         {
           nome: "Jão da Silva",
           email: "jao.silva@gmail.com",
-          cpf: "123.456.789-05",
+          cpf: "123.456.789-10",
           telefone: "(67) 99997 7777",
           rg: "2435466687",
           dataNasc: "10/10/1960",
@@ -143,7 +228,7 @@ export default {
         {
           nome: "Maria dos Santos",
           email: "maria.dsantos@gmail.com",
-          cpf: "123.456.789-05",
+          cpf: "719.876.543-21",
           telefone: "(11) 99797 7787",
           rg: "24935466687",
           dataNasc: "10/10/1960",
@@ -159,7 +244,7 @@ export default {
         {
           nome: "Zé do Caixão",
           email: "jose_zc@gmail.com",
-          cpf: "123.456.789-05",
+          cpf: "121.212.343-33",
           telefone: "(67) 99997 4737",
           rg: "2435466687",
           dataNasc: "10/10/1960",
@@ -175,7 +260,7 @@ export default {
         {
           nome: "Joselito da Silva",
           email: "js_silva@gmail.com",
-          cpf: "123.456.789-05",
+          cpf: "934.456.731-05",
           telefone: "(51) 99997 7774",
           rg: "2435466687",
           dataNasc: "10/10/1960",
@@ -191,7 +276,7 @@ export default {
         {
           nome: "Luís da Silva",
           email: "luis_silva@gmail.com",
-          cpf: "123.456.789-05",
+          cpf: "134.671.167-15",
           telefone: "(43) 99998 1234",
           rg: "2435466687",
           dataNasc: "10/10/1960",
@@ -207,7 +292,7 @@ export default {
         {
           nome: "Ana dos Santos",
           email: "santos_ana@gmail.com",
-          cpf: "123.456.789-05",
+          cpf: "239.456.789-37",
           telefone: "(32) 99994 1894",
           rg: "2435466687",
           dataNasc: "10/10/1960",
@@ -223,7 +308,7 @@ export default {
         {
           nome: "Tião da Silva",
           email: "t_silva@gmail.com",
-          cpf: "123.456.789-05",
+          cpf: "167.138.789-44",
           telefone: "(48) 98734 6713",
           rg: "2435466687",
           dataNasc: "10/10/1960",
@@ -238,19 +323,39 @@ export default {
         },
       ];
     },
-    abrirDetalhes(item) {
-      this.clienteAtual = item;
+    abrirDetalhes(cliente) {
+      this.clienteAtual = cliente;
       this.dialogDetalhes = true;
     },
     fecharDetalhes() {
       this.dialogDetalhes = false;
     },
-    compraCliente(item) {
-      this.cliente = item;
+
+    //Recebe o objeto com o cliente atual
+    //Envia o nome do cliente para a tela de compras
+    //Compara o CPF do cliente com o CPF das compras realizadas no app
+    compraCliente(cliente) {
+      this.clienteAtual.nome = cliente.nome;
+      this.comprasClienteAtual = [];
+      for (let i = 0; i < this.compras.length; i++) {
+        if (cliente.cpf == this.compras[i].cpf) {
+          this.comprasClienteAtual.push(this.compras[i]);
+        }
+      }
+      for (let i = 0; i < this.comprasClienteAtual.length; i++) {
+        let compra = this.comprasClienteAtual[i];
+        compra.qtdTotal = 0;
+        compra.valorTotal = 0;
+        for (let i = 0; i < compra.produtos.length; i++) {
+          let produto = compra.produtos[i];
+          compra.qtdTotal = compra.qtdTotal + produto.qtd;
+          compra.valorTotal = compra.valorTotal + produto.valor;
+        }
+        compra.valorTotal = "R$ " + compra.valorTotal.toFixed(2);
+      }
       this.mostrarClientes = false;
     },
     fecharJanelaCompras() {
-      this.cliente = {};
       this.mostrarClientes = true;
     },
   },

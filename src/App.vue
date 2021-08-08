@@ -5,14 +5,14 @@
       color="#FF8900"
       dark
       clipped-left
-      height="80px"
+      height="70px"
     >
       <v-app-bar-nav-icon @click="ocultarMenu"></v-app-bar-nav-icon>
       <v-img
         :src="logo"
-        max-width="70"
+        max-width="60"
       ></v-img>
-      <h1 style="font-size: 40px">HiFood</h1>
+      <h1 style="font-size: 35px">HiFood</h1>
       <v-spacer></v-spacer>
       <v-btn text>
         Logout
@@ -36,7 +36,7 @@
                 align="center"
                 justify="center"
               >
-                <v-avatar size="80">
+                <v-avatar size="75">
                   <v-img :src="user"></v-img>
                 </v-avatar>
               </v-row>
