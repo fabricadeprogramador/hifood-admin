@@ -45,6 +45,7 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-select
                       label="categoria"
+                      :items="arrayCategoria"
                       v-model="produtoAtual.categoria"
                       required
                     ></v-select>
@@ -81,7 +82,7 @@
       >
 
       <!-- {{ arrayProdutos }} -->
-      {{ arrayCategoria }}
+      <!-- {{ arrayCategoria }} -->
     </template>
   </div>
 </template>
@@ -92,15 +93,7 @@ export default {
 
   data: () => ({
     produtoAtual: {},
-    msg: false,
-    select: null,
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-      ],
-      checkbox: false,
+    msg: false
   }),
 
   methods: {

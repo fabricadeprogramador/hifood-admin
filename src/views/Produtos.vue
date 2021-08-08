@@ -46,9 +46,11 @@
         @voltarPrincipal="fechaComponenteProdutoAdd()"
       />
 
-      <produtoEdit 
+      <produtoEdit
         v-if="exibeComponentProdutoEdit"
         :objProdutoEdit="produtoEdit"
+        :arrayProdutos="produtos"
+        :arrayCategoria="categoriaProdutos"
         @voltarPrincipal="fechaComponenteProdutoEdit()"
       />
     </template>
@@ -71,14 +73,15 @@ export default {
       produtos: [],
       produtoEdit: {},
       categoriaProdutos: [
-        "Lanches", 
+        "Lanches",
         "Bebidas",
         "Pizzas",
         "Pratos",
         "Sobremesas",
-        "Porções"
+        "Porções",
       ],
 
+      editedIndex: -1,
       headers: [
         {
           text: "Produto",
@@ -116,6 +119,13 @@ export default {
       this.exibeComponentProdutoEdit = true;
 
       this.produtoEdit = item;
+    },
+
+    deleteItem(item) {
+      this.editedIndex = this.produtos.indexOf(item);
+      if(this.editedIndex > -1) {
+         this.produtos.splice(this.editedIndex, 1);
+      }
     },
   },
 };

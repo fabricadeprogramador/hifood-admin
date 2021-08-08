@@ -45,6 +45,7 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-select
                       label="categoria"
+                      :items="arrayCategoria"
                       v-model="objProdutoEdit.categoria"
                       required
                     ></v-select>
@@ -59,7 +60,7 @@
                   </v-col>
                 </v-row>
 
-                <v-btn color="#232B45" dark class="mr-4" @click="salvar()">
+                <v-btn color="#232B45" dark class="mr-4" @click="atualizar()">
                   Atualizar
                 </v-btn>
               </v-form>
@@ -87,7 +88,7 @@
 
 <script>
 export default {
-  props: ["objProdutoEdit"],
+  props: ["objProdutoEdit", "arrayCategoria"],
 
   data: () => ({
     produtoAtual: {},
