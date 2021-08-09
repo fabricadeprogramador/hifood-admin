@@ -136,27 +136,7 @@
 					</v-card-text>
 				</v-card>
 			</v-col>
-			<!-- Coluna 3 -->
-			<v-col>
-				<v-card
-					elevation="2"
-					class="text-center"
-					color="#0A1330"
-					dark
-				>
-					<v-card-text>
-						<v-sheet
-							color="#FFFFFF"
-							height="260px"
-						>
-						</v-sheet>
-					</v-card-text>
 
-					<v-card-text>
-						<div class="text-h4">Título do card</div>
-					</v-card-text>
-				</v-card>
-			</v-col>
 		</v-row>
 		<!-- Divisão inferior da tela -->
 		<v-row
@@ -175,8 +155,8 @@
 						size="80px"
 						class="my-2"
 					>mdi-podium</v-icon>
-					<h3>Categoria mais vendida</h3>
-					<h1>{{ qtdTeste }}</h1>
+					<h4>Categoria mais vendida:</h4>
+					<h3>{{ bestSellerCat }}</h3>
 				</v-card>
 			</v-col>
 			<v-col>
@@ -190,8 +170,8 @@
 						size="80px"
 						class="my-2"
 					>mdi-podium-gold</v-icon>
-					<h3>Produto mais vendido</h3>
-					<h1>{{ top1 }}</h1>
+					<h3>Produto mais vendido:</h3>
+					<h3>{{ bestSellerProduct }}</h3>
 				</v-card>
 			</v-col>
 			<v-col>
@@ -205,8 +185,8 @@
 						size="80px"
 						class="my-2"
 					>mdi-thumb-down-outline</v-icon>
-					<h3>Categoria menos vendida</h3>
-					<h1>{{ qtdTeste }}</h1>
+					<h4>Categoria menos vendida:</h4>
+					<h3>{{ leastSoldCat }}</h3>
 				</v-card>
 			</v-col>
 			<v-col>
@@ -220,8 +200,8 @@
 						size="80px"
 						class="my-2"
 					>mdi-thumb-down</v-icon>
-					<h3>Produto menos vendido</h3>
-					<h1>{{ qtdTeste }}</h1>
+					<h4>Produto menos vendido:</h4>
+					<h3>{{ leastSoldProduct }}</h3>
 				</v-card>
 			</v-col>
 		</v-row>
@@ -237,7 +217,10 @@ export default {
 		qtdVendas: 1792,
 		valorVendas: "10.371,53",
 		qtdTeste: 0,
-		top1: "Produto 1",
+		bestSellerCat: "Burgers",
+		leastSoldCat: "Sobremesas",
+		bestSellerProduct: "Combo Cheese Burger",
+		leastSoldProduct: "Brownie de Maracujá",
 		date: { dia: "", mes: "", ano: "", hora: "", minuto: "", segundo: "" },
 		value: [423, 446, 675, 510, 590, 610, 760],
 	}),
