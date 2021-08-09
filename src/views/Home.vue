@@ -39,7 +39,7 @@
       <v-col>
         <v-card
           elevation="2"
-          color="#4A148C"
+          color="#283593"
           class="text-center pa-3"
           dark
         >
@@ -54,7 +54,7 @@
       <v-col>
         <v-card
           elevation="2"
-          color="#311B92"
+          color="#006064"
           class="text-center pa-3"
           dark
         >
@@ -167,7 +167,7 @@
       <v-col>
         <v-card
           elevation="2"
-          color="#FF8F00"
+          color="#006064"
           class="text-center pa-3"
           dark
         >
@@ -182,7 +182,7 @@
       <v-col>
         <v-card
           elevation="2"
-          color="#388E3C"
+          color="#283593"
           class="text-center pa-3"
           dark
         >
@@ -197,7 +197,7 @@
       <v-col>
         <v-card
           elevation="2"
-          color="#00838F"
+          color="#880E4F"
           class="text-center pa-3"
           dark
         >
@@ -212,7 +212,7 @@
       <v-col>
         <v-card
           elevation="2"
-          color="#006064"
+          color="#B71C1C"
           class="text-center pa-3"
           dark
         >
