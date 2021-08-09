@@ -121,8 +121,18 @@ export default {
         cpf: "123.456.789-10",
         data: "06/10/2020",
         produtos: [
-          { nomeProduto: "Produto 1", qtd: 1, valor: 20 },
-          { nomeProduto: "Produto 2", qtd: 1, valor: 16 },
+          {
+            nomeProduto: "Produto 1",
+            qtd: 1,
+            valorUnit: 20,
+            valorTotalProduto: 0,
+          },
+          {
+            nomeProduto: "Produto 2",
+            qtd: 1,
+            valorUnit: 16,
+            valorTotalProduto: 0,
+          },
         ],
         valorTotal: 0,
         qtdTotal: 0,
@@ -131,9 +141,24 @@ export default {
         cpf: "123.456.789-10",
         data: "01/03/2021",
         produtos: [
-          { nomeProduto: "Produto 1", qtd: 1, valor: 20 },
-          { nomeProduto: "Produto 2", qtd: 2, valor: 16 },
-          { nomeProduto: "Produto 3", qtd: 1, valor: 13 },
+          {
+            nomeProduto: "Produto 1",
+            qtd: 1,
+            valorUnit: 8,
+            valorTotalProduto: 0,
+          },
+          {
+            nomeProduto: "Produto 2",
+            qtd: 2,
+            valorUnit: 11,
+            valorTotalProduto: 0,
+          },
+          {
+            nomeProduto: "Produto 3",
+            qtd: 1,
+            valorUnit: 13,
+            valorTotalProduto: 0,
+          },
         ],
         valorTotal: 0,
         qtdTotal: 0,
@@ -142,9 +167,24 @@ export default {
         cpf: "719.876.543-21",
         data: "09/04/2021",
         produtos: [
-          { nomeProduto: "Produto 1", qtd: 1, valor: 17 },
-          { nomeProduto: "Produto 2", qtd: 1, valor: 8 },
-          { nomeProduto: "Produto 3", qtd: 1, valor: 2 },
+          {
+            nomeProduto: "Produto 1",
+            qtd: 1,
+            valorUnit: 17,
+            valorTotalProduto: 0,
+          },
+          {
+            nomeProduto: "Produto 2",
+            qtd: 2,
+            valorUnit: 8,
+            valorTotalProduto: 0,
+          },
+          {
+            nomeProduto: "Produto 3",
+            qtd: 1,
+            valorUnit: 4,
+            valorTotalProduto: 0,
+          },
         ],
         valorTotal: 0,
         qtdTotal: 0,
@@ -152,7 +192,14 @@ export default {
       {
         cpf: "167.138.789-44",
         data: "03/07/2021",
-        produtos: [{ nomeProduto: "Produto 1", qtd: 1, valor: 9 }],
+        produtos: [
+          {
+            nomeProduto: "Produto 1",
+            qtd: 3,
+            valorUnit: 9,
+            valorTotalProduto: 0,
+          },
+        ],
         valorTotal: 0,
         qtdTotal: 0,
       },
@@ -160,9 +207,24 @@ export default {
         cpf: "121.212.343-33",
         data: "24/02/2021",
         produtos: [
-          { nomeProduto: "Produto 1", qtd: 1, valor: 21 },
-          { nomeProduto: "Produto 2", qtd: 2, valor: 16 },
-          { nomeProduto: "Produto 3", qtd: 1, valor: 2 },
+          {
+            nomeProduto: "Produto 1",
+            qtd: 1,
+            valorUnit: 21,
+            valorTotalProduto: 0,
+          },
+          {
+            nomeProduto: "Produto 2",
+            qtd: 2,
+            valorUnit: 16,
+            valorTotalProduto: 0,
+          },
+          {
+            nomeProduto: "Produto 3",
+            qtd: 1,
+            valorUnit: 9,
+            valorTotalProduto: 0,
+          },
         ],
         valorTotal: 0,
         qtdTotal: 0,
@@ -171,10 +233,30 @@ export default {
         cpf: "934.456.731-05",
         data: "03/10/2020",
         produtos: [
-          { nomeProduto: "Produto 1", qtd: 1, valor: 21 },
-          { nomeProduto: "Produto 2", qtd: 2, valor: 16 },
-          { nomeProduto: "Produto 3", qtd: 1, valor: 2 },
-          { nomeProduto: "Produto 4", qtd: 2, valor: 32 },
+          {
+            nomeProduto: "Produto 1",
+            qtd: 1,
+            valorUnit: 21,
+            valorTotalProduto: 0,
+          },
+          {
+            nomeProduto: "Produto 2",
+            qtd: 2,
+            valorUnit: 12,
+            valorTotalProduto: 0,
+          },
+          {
+            nomeProduto: "Produto 3",
+            qtd: 1,
+            valorUnit: 2,
+            valorTotalProduto: 0,
+          },
+          {
+            nomeProduto: "Produto 4",
+            qtd: 2,
+            valorUnit: 32,
+            valorTotalProduto: 0,
+          },
         ],
         valorTotal: 0,
         qtdTotal: 0,
@@ -183,8 +265,18 @@ export default {
         cpf: "134.671.167-15",
         data: "08/05/2021",
         produtos: [
-          { nomeProduto: "Produto 1", qtd: 3, valor: 17 },
-          { nomeProduto: "Produto 2", qtd: 2, valor: 21 },
+          {
+            nomeProduto: "Produto 1",
+            qtd: 3,
+            valorUnit: 17,
+            valorTotalProduto: 0,
+          },
+          {
+            nomeProduto: "Produto 2",
+            qtd: 2,
+            valorUnit: 21,
+            valorTotalProduto: 0,
+          },
         ],
         valorTotal: 0,
         qtdTotal: 0,
@@ -193,8 +285,18 @@ export default {
         cpf: "239.456.789-37",
         data: "01/03/2021",
         produtos: [
-          { nomeProduto: "Produto 1", qtd: 4, valor: 20 },
-          { nomeProduto: "Produto 2", qtd: 2, valor: 13 },
+          {
+            nomeProduto: "Produto 1",
+            qtd: 4,
+            valorUnit: 20,
+            valorTotalProduto: 0,
+          },
+          {
+            nomeProduto: "Produto 2",
+            qtd: 2,
+            valorUnit: 13,
+            valorTotalProduto: 0,
+          },
         ],
         valorTotal: 0,
         qtdTotal: 0,
@@ -348,8 +450,9 @@ export default {
         compra.valorTotal = 0;
         for (let i = 0; i < compra.produtos.length; i++) {
           let produto = compra.produtos[i];
+          produto.valorTotalProduto = produto.valorUnit * produto.qtd;
+          compra.valorTotal = compra.valorTotal + produto.valorTotalProduto;
           compra.qtdTotal = compra.qtdTotal + produto.qtd;
-          compra.valorTotal = compra.valorTotal + produto.valor;
         }
         compra.valorTotal = "R$ " + compra.valorTotal.toFixed(2);
       }

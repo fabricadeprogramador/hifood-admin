@@ -78,7 +78,7 @@
         <v-card
           elevation="2"
           class="text-center"
-          color="#1A237E"
+          color="#0A1330"
           dark
         >
           <v-card-text>
@@ -111,7 +111,7 @@
         <v-card
           elevation="2"
           class="text-center"
-          color="#0D47A1"
+          color="#0A1330"
           dark
         >
           <v-card-text>
@@ -141,7 +141,7 @@
         <v-card
           elevation="2"
           class="text-center"
-          color="#01579B"
+          color="#0A1330"
           dark
         >
           <v-card-text>

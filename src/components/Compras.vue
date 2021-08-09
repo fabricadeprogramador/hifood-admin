@@ -9,7 +9,7 @@
       >Voltar</v-btn>
     </v-card-actions>
     <v-data-table
-      :headers="headers"
+      :headers="cabecalhoPrincipal"
       :items="comprasCliente"
       :items-per-page="10"
       class="elevation-1"
@@ -23,9 +23,37 @@
           ></v-divider>
           <v-toolbar-title>{{cliente}}</v-toolbar-title>
           <v-spacer></v-spacer>
+          <v-dialog
+            v-model="dialogDetalhes"
+            persistent
+            width="600px"
+          >
+            <v-card class="pa-3">
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="#232B45"
+                  dark
+                  small
+                  @click="fecharDetalhes"
+                >Fechar</v-btn>
+              </v-card-actions>
+              <v-card-text class="text-h6">Compra realizada em {{dataCorrente}}</v-card-text>
+              <v-data-table
+                :headers="cabecalhoDetalhes"
+                :items="compraAtual"
+                :items-per-page="10"
+                class="elevation-1"
+              >
+              </v-data-table>
+            </v-card>
+          </v-dialog>
         </v-toolbar>
-      </template> <template v-slot:item.detalhes="{}">
-        <v-icon size="25px"> mdi-magnify </v-icon>
+      </template> <template v-slot:item.detalhes="{item}">
+        <v-icon
+          size="25px"
+          @click="abrirDetalhes(item)"
+        > mdi-magnify </v-icon>
       </template>
     </v-data-table>
   </v-card>
@@ -44,7 +72,8 @@ export default {
   },
   data() {
     return {
-      headers: [
+      dialogDetalhes: false,
+      cabecalhoPrincipal: [
         {
           text: "CPF",
           align: "start",
@@ -56,11 +85,37 @@ export default {
         { text: "Valor total", value: "valorTotal" },
         { text: "Detalhes", value: "detalhes" },
       ],
+      cabecalhoDetalhes: [
+        { text: "Produto", value: "nomeProduto" },
+        { text: "Valor unitário (R$)", value: "valorUnit" },
+        { text: "Quantidade", value: "qtd" },
+        { text: "Valor total (R$)", value: "valorTotalProduto" },
+      ],
+      compraAtual: [],
+      dataCorrente: "",
     };
   },
   methods: {
     voltarClientes() {
       this.$emit("voltar-clientes");
+    },
+    abrirDetalhes(compraCliente) {
+      this.dataCorrente = compraCliente.data;
+      this.compraAtual = [];
+      for (let i = 0; i < compraCliente.produtos.length; i++) {
+        let compra = compraCliente.produtos[i];
+        this.compraAtual.push(compra);
+      }
+      for (let i = 0; i < this.compraAtual.length; i++) {
+        let valorUnitario = parseFloat(this.compraAtual[i].valorUnit);
+        let valorTotal = parseFloat(this.compraAtual[i].valorTotalProduto);
+        this.compraAtual[i].valorUnit = valorUnitario.toFixed(2);
+        this.compraAtual[i].valorTotalProduto = valorTotal.toFixed(2);
+      }
+      this.dialogDetalhes = true;
+    },
+    fecharDetalhes() {
+      this.dialogDetalhes = false;
     },
   },
 };
