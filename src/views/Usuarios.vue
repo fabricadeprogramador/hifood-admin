@@ -3,7 +3,7 @@
     :headers="headers"
     :items="usuarios"
     sort-by="name"
-    class="elevation-8" 
+    class="elevation-8"
   >
     <template v-slot:top>
       <v-toolbar flat>
@@ -24,42 +24,26 @@
             <v-card-text>
               <v-container>
                 <v-row>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.nome"
-                      label="Nome"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.cpf"
-                      label="CPF"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.usuario"
-                      label="Usuário"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
+              
+                  <v-col cols="12" md="6">
                     <v-text-field
                       v-model="editedItem.email"
                       label="Email"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" md="6">
                     <v-text-field
                       v-model="editedItem.tipo"
                       label="Tipo"
+                      readonly="true"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.senha" label="Senha">
+                  <v-col cols="12" md="6">
+                    <v-text-field v-model="editedItem.senha" label="Senha" type="password">
                     </v-text-field>
                   </v-col>
 
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" md="6">
                     <v-checkbox
                       v-model="editedItem.ativo"
                       :label="editedItem.ativo ? 'Ativo' : 'Inativo'"
@@ -101,10 +85,9 @@
 
     <template v-slot:item.status="{ item }">
       <v-checkbox
-        on-icon='mdi-account-check-outline'
-        off-icon='mdi-account-off-outline'
+        on-icon="mdi-account-check-outline"
+        off-icon="mdi-account-off-outline"
         v-model="item.ativo"
-        
       ></v-checkbox>
     </template>
 
@@ -117,6 +100,7 @@
 <script>
 export default {
   data: () => ({
+    focus: false,
     dialog: false,
     dialogDelete: false,
     headers: [
@@ -128,21 +112,15 @@ export default {
     usuarios: [],
     editedIndex: -1,
     editedItem: {
-      nome: "",
-      cpf: "",
-      usuario: "",
       email: "",
       senha: "",
       tipo: "",
       ativo: true,
     },
     defaultItem: {
-      nome: "",
-      cpf: "",
-      usuario: "",
-      email: "",
+       email: "",
       senha: "",
-      tipo: "",
+      tipo: "Admin",
       ativo: true,
     },
   }),
@@ -170,10 +148,7 @@ export default {
     initialize() {
       this.usuarios = [
         {
-          nome: "Maria da Silva",
-          cpf: "159.075.345-67",
-          usuario: "Frozen",
-          email: "frozen@gmail.com",
+        email: "frozen@gmail.com",
           senha: "123",
           tipo: "admin",
           ativo: true,
@@ -227,5 +202,4 @@ export default {
 </script>
 
 <style>
-
 </style>
