@@ -10,9 +10,6 @@
 
       <v-row>
         <v-col>
-          <v-card class="pa-2" outlined tile> Filtros </v-card>
-        </v-col>
-        <v-col>
           <v-btn @click="btnAddProduto()">
             <v-icon>mdi-plus</v-icon> Adicionar
           </v-btn>

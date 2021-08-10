@@ -103,6 +103,7 @@ export default {
 
     salvar() {
       if (this.validar(this.produtoAtual)) {
+        this.produtoAtual.imagem = "https://conteudo.imguol.com.br/c/entretenimento/9d/2020/05/26/hamburguer-recheado-na-churrasqueira-1590524861807_v2_4x3.jpg"
         this.arrayProdutos.push(this.produtoAtual);
         this.produtoAtual = {};
         this.msg = true;
