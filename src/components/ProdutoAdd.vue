@@ -34,7 +34,7 @@
                 ></v-text-field>
 
                 <v-row>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" sm="12" md="3">
                     <v-text-field
                       label="Valor"
                       v-model="produtoAtual.valor"
@@ -42,7 +42,7 @@
                     ></v-text-field>
                   </v-col>
 
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" sm="12" md="3">
                     <v-select
                       label="categoria"
                       :items="arrayCategoria"
@@ -51,12 +51,22 @@
                     ></v-select>
                   </v-col>
 
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" sm="12" md="3">
                     <v-text-field
                       label="Quantidade Disponível"
                       v-model="produtoAtual.qtdDisponivel"
                       required
                     ></v-text-field>
+                  </v-col>
+
+                  <v-col cols="12" sm="12" md="3">
+                    <v-file-input
+                      v-model="produtoAtual.imagem"
+                      label="Foto"
+                      placeholder="Anexar uma foto"
+                      outlined
+                    >
+                    </v-file-input>
                   </v-col>
                 </v-row>
 
@@ -93,7 +103,7 @@ export default {
 
   data: () => ({
     produtoAtual: {},
-    msg: false
+    msg: false,
   }),
 
   methods: {
@@ -103,7 +113,8 @@ export default {
 
     salvar() {
       if (this.validar(this.produtoAtual)) {
-        this.produtoAtual.imagem = "https://conteudo.imguol.com.br/c/entretenimento/9d/2020/05/26/hamburguer-recheado-na-churrasqueira-1590524861807_v2_4x3.jpg"
+        this.produtoAtual.imagem =
+          "https://conteudo.imguol.com.br/c/entretenimento/9d/2020/05/26/hamburguer-recheado-na-churrasqueira-1590524861807_v2_4x3.jpg";
         this.arrayProdutos.push(this.produtoAtual);
         this.produtoAtual = {};
         this.msg = true;
