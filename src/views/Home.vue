@@ -218,9 +218,9 @@ export default {
     qtdVendas: 1792,
     valorVendas: "10.371,53",
     qtdTeste: 0,
-    bestSellerCat: "Burgers",
+    bestSellerCat: "Lanches",
     leastSoldCat: "Saladas",
-    bestSellerProduct: "Combo Cheese Burger",
+    bestSellerProduct: "Combo Cheeseburger",
     leastSoldProduct: "Brownie de Maracujá",
     date: {
       dia: "",
