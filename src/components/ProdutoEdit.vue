@@ -3,7 +3,10 @@
     <template>
       <v-row>
         <v-col>
-          <h1>Produtos <v-icon>mdi-chevron-right</v-icon> editar <v-icon>mdi-chevron-right</v-icon> {{objProdutoEdit.nome}}</h1>
+          <h1>
+            Produtos <v-icon>mdi-chevron-right</v-icon> editar
+            <v-icon>mdi-chevron-right</v-icon> {{ objProdutoEdit.nome }}
+          </h1>
           <p>Aqui você pode alterar as informações do seu produto</p>
         </v-col>
       </v-row>
@@ -23,13 +26,13 @@
               <v-form>
                 <v-text-field
                   label="Nome do produto"
-                  v-model="objProdutoEdit.nome"
+                  v-model="produtoEdit.nome"
                   required
                 ></v-text-field>
 
                 <v-text-field
                   label="Descrição"
-                  v-model="objProdutoEdit.descricao"
+                  v-model="produtoEdit.descricao"
                   required
                 ></v-text-field>
 
@@ -37,7 +40,7 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
                       label="Valor"
-                      v-model="objProdutoEdit.valor"
+                      v-model="produtoEdit.valor"
                       required
                     ></v-text-field>
                   </v-col>
@@ -46,7 +49,7 @@
                     <v-select
                       label="categoria"
                       :items="arrayCategoria"
-                      v-model="objProdutoEdit.categoria"
+                      v-model="produtoEdit.categoria"
                       required
                     ></v-select>
                   </v-col>
@@ -54,7 +57,7 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
                       label="Quantidade Disponível"
-                      v-model="objProdutoEdit.qtdDisponivel"
+                      v-model="produtoEdit.qtdDisponivel"
                       required
                     ></v-text-field>
                   </v-col>
@@ -69,37 +72,75 @@
         </v-col>
         <v-col>
           <v-card class="mx-auto" max-width="344">
-            <v-img
-              src="https://lh3.googleusercontent.com/proxy/lObrxfTa9Pq3b4kCUqHTsooUIvB89XeMGwbZPUbuJpqBxuYjcYl2ON7RgW3KN6rX9AcHxeSSXqLVIwmaPwKJNRTwGS7bF4PSKztgiNVILV73Xeo_mYo3QPvnekfKPlbfpFl3p-TNNbX3B25XsMezKnZ8Ob8PluqIxdkArhbx1BUtmoROIXHaNYetQSF0k_DjnCFvsCug1z7B"
-              height="190px"
-            ></v-img>
+            <v-img v-bind:src="produtoEdit.imagem" height="190px"></v-img>
 
             <v-card-title>Enviar imagem</v-card-title>
 
-            <v-card-subtitle>Adicione uma nova foto</v-card-subtitle>
+            <v-card-subtitle>
+              <v-file-input
+                  v-model="produtoEdit.imagem"
+                  label="Adicione uma nova foto"
+                  placeholder="Anexar uma foto"
+                >
+                </v-file-input>
+            </v-card-subtitle>   
           </v-card>
         </v-col>
       </v-row>
 
+      <v-alert
+        v-if="msg"
+        class="mt-6"
+        type="success"
+        border="left"
+        close-text="Close Alert"
+        dark
+        dismissible
+        @click="fechaMsg()"
+        >Produto alterado com sucesso.</v-alert
+      >
+
+      <!-- {{arrayProdutos}} -->
       <!-- {{objProdutoEdit}} -->
+      <!-- {{editedIndex}} -->
     </template>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["objProdutoEdit", "arrayCategoria"],
+  props: ["arrayProdutos", "objProdutoEdit", "arrayCategoria"],
 
   data: () => ({
-    produtoAtual: {},
+    produtoEdit: {},
+    editedIndex: -1,
+    msg: false
   }),
 
+  created() {
+    this.initialize();
+  },
+
   methods: {
+    initialize() {
+      this.editedIndex = this.arrayProdutos.indexOf(this.objProdutoEdit) //pego o indice do array que contém o objeto a ser editado
+      this.produtoEdit = Object.assign({}, this.objProdutoEdit); //faço a copia do objeto original
+    },
+
     voltar() {
       this.$emit("voltarPrincipal");
     },
 
-    atualizar() {}
+    atualizar() {
+      if(this.editedIndex > -1) {
+        Object.assign(this.arrayProdutos[this.editedIndex], this.produtoEdit);
+        this.msg = true;
+      }
+    },
+
+    fechaMsg() {
+      this.msg = false;
+    }
   },
 };
 </script>
