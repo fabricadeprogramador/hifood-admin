@@ -99,7 +99,7 @@
               </div>
             </v-card-text>
             <div class="text-h4">
-              {{ date.dia }} de {{ date.mes }} de {{ date.ano }}
+              {{ date.semana }}, {{ date.dia }} de {{ date.mes }} de {{ date.ano }}
             </div>
           </v-card-text>
         </v-card>
@@ -109,23 +109,27 @@
       <v-col>
         <v-card
           elevation="2"
-          class="text-center"
+          class="text-center px-3"
           color="#0A1330"
           height="350"
           min-width="700"
           dark
         >
-          <v-card-text>
-            <div class="text-h4">Histórico de vendas</div>
-          </v-card-text>
-          <v-sparkline
-            :labels="legendaGraf"
-            :value="valorGraf"
-            color="white"
-            line-width="2"
-            height="80"
-            padding="10"
-          ></v-sparkline>
+          <v-container>
+
+            <v-card-text>
+              <div class="text-h4">Histórico de vendas</div>
+            </v-card-text>
+            <v-sparkline
+              :labels="legendaGraf"
+              :value="valorGraf"
+              color="white"
+              line-width="2"
+              height="80"
+              type="bars"
+              auto-line-width
+            ></v-sparkline>
+          </v-container>
         </v-card>
       </v-col>
 
@@ -218,14 +222,36 @@ export default {
     leastSoldCat: "Saladas",
     bestSellerProduct: "Combo Cheese Burger",
     leastSoldProduct: "Brownie de Maracujá",
-    date: { dia: "", mes: "", ano: "", hora: "", minuto: "", segundo: "" },
-    valorGraf: [500, 600, 570, 450, 750],
-    legendaGraf: ["Jan", "Abr", "Jul", "Out", "Dez"],
+    date: {
+      dia: "",
+      mes: "",
+      ano: "",
+      hora: "",
+      minuto: "",
+      segundo: "",
+      diaSemana: "",
+    },
+    valorGraf: [500, 600, 570, 450, 700, 578, 614, 559, 439, 639, 700, 798],
+    legendaGraf: [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez",
+    ],
   }),
   methods: {
     horaAtual() {
       let data = new Date();
       let dia = data.getDate();
+      let semana = data.getDay();
       let mes = data.getMonth();
       let ano = data.getFullYear();
       let hora = data.getHours();
@@ -268,6 +294,31 @@ export default {
           break;
         case 11:
           this.date.mes = "Dezembro";
+          break;
+        default:
+          break;
+      }
+      switch (semana) {
+        case 0:
+          this.date.semana = "Domingo";
+          break;
+        case 1:
+          this.date.semana = "Segunda-feira";
+          break;
+        case 2:
+          this.date.semana = "Terça-feira";
+          break;
+        case 3:
+          this.date.semana = "Quarta-feira";
+          break;
+        case 4:
+          this.date.semana = "Quinta-feira";
+          break;
+        case 5:
+          this.date.semana = "Sexta-feira";
+          break;
+        case 6:
+          this.date.semana = "Sábado";
           break;
         default:
           break;
