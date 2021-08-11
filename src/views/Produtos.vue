@@ -9,28 +9,38 @@
       </v-row>
 
       <v-row>
-        <v-col>
+        <v-col class="pa-2">
           <v-btn @click="btnAddProduto()">
             <v-icon>mdi-plus</v-icon> Adicionar
+          </v-btn>
+
+          <v-btn @click="btnModoVisualizacao()" class="ml-4">
+            <v-icon>mdi-eye </v-icon> Modo Visualização
           </v-btn>
         </v-col>
       </v-row>
 
       <v-row>
         <v-col>
-          <v-data-table
-            :headers="headers"
-            :items="produtos"
-            :items-per-page="5"
-            class="elevation-1"
-          >
-            <template v-slot:item.actions="{ item }">
-              <v-icon small class="mr-2" @click="editItem(item)"
-                >mdi-pencil</v-icon
-              >
-              <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
-            </template>
-          </v-data-table>
+          <template v-if="!visualizarLinha">
+            <v-data-table
+              :headers="headers"
+              :items="produtos"
+              :items-per-page="5"
+              class="elevation-1"
+            >
+              <template v-slot:item.actions="{ item }">
+                <v-icon small class="mr-2" @click="editItem(item)"
+                  >mdi-pencil</v-icon
+                >
+                <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
+              </template>
+            </v-data-table>
+          </template>
+
+          <template v-else>
+            linha
+          </template>
         </v-col>
       </v-row>
     </template>
@@ -67,7 +77,57 @@ export default {
       exibeListaProdutos: true,
       exibeComponentProdutoAdd: false,
       exibeComponentProdutoEdit: false,
-      produtos: [],
+      produtos: [
+        {
+          nome: "Hot-Dog Simples",
+          descricao: "Pão, Salsicha, Batata-palha, Molho Especial e Tomate",
+          valor: 12.90,
+          categoria: "Lanches",
+          qtdDisponivel: 100,
+          imagem: "https://www.receiteria.com.br/wp-content/uploads/receitas-de-molho-de-cachorro-quente-1.jpg"
+        },
+        {
+          nome: "Hot-Dog Especial",
+          descricao: "Pão, Salsicha, Presunto, Mussarela, Batata-palha, Molho Especial, Tomate, Orégano",
+          valor: 17.95,
+          categoria: "Lanches",
+          qtdDisponivel: 55,
+          imagem: "https://www.dicasdemulher.com.br/wp-content/uploads/2018/03/cachorro-quente-3.jpg"
+        },
+        {
+          nome: "Frango ao Creme",
+          descricao: "Massa feita no forno à lenha, Frango, Creme, Presunto, Mussarela, Molho Especial, Tomate, Orégano",
+          valor: 35.80,
+          categoria: "Pizzas",
+          qtdDisponivel: 105,
+          imagem: "https://t2.rg.ltmcdn.com/pt/images/4/1/2/img_pizza_de_liquidificador_de_frango_6214_orig.jpg"
+        },
+        {
+          nome: "Moda da Casa",
+          descricao: "Massa feita no forno à lenha, Creme, Carne Seca, Presunto, Mussarela, Molho Especial, Tomate, Orégano",
+          valor: 44.70,
+          categoria: "Pizzas",
+          qtdDisponivel: 99,
+          imagem: "https://www.ocladapizza.com.br/wp-content/uploads/2017/02/massa-da-pizza-conhe%C3%A7a-6-ingredientes-e-suas-fun%C3%A7%C3%B5es-blog-pizzaria-o-cla-da-pizza-660x420.jpg"
+        },
+        {
+          nome: "Porção Simples",
+          descricao: "Frango, Salada, Tomate, Molho Especial",
+          valor: 12.20,
+          categoria: "Porções",
+          qtdDisponivel: 99,
+          imagem: "https://img.elo7.com.br/product/original/22565B3/adesivo-parede-prato-comida-frango-salada-restaurante-lindo-adesivo-parede.jpg"
+        },
+        {
+          nome: "Prato Completo",
+          descricao: "Arroz, Feijão, Salada, Tomate e Bife Aceboladol",
+          valor: 13.40,
+          categoria: "Pratos",
+          qtdDisponivel: 100,
+          imagem: "https://www.istoedinheiro.com.br/wp-content/uploads/sites/17/2019/08/din1135-sustenta5.jpg"
+        }
+
+      ],
       produtoEdit: {},
       categoriaProdutos: [
         "Lanches",
@@ -77,8 +137,8 @@ export default {
         "Sobremesas",
         "Porções",
       ],
-
       editedIndex: -1,
+      visualizarLinha: false,
       headers: [
         {
           text: "Produto",
@@ -100,6 +160,8 @@ export default {
       this.exibeListaProdutos = false;
       this.exibeComponentProdutoAdd = true;
     },
+
+    btnModoVisualizacao() {},
 
     fechaComponenteProdutoAdd() {
       this.exibeListaProdutos = true;

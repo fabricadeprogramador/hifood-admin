@@ -76,7 +76,14 @@
 
             <v-card-title>Enviar imagem</v-card-title>
 
-            <v-card-subtitle>Adicione uma nova foto</v-card-subtitle>
+            <v-card-subtitle>
+              <v-file-input
+                  v-model="produtoEdit.imagem"
+                  label="Adicione uma nova foto"
+                  placeholder="Anexar uma foto"
+                >
+                </v-file-input>
+            </v-card-subtitle>   
           </v-card>
         </v-col>
       </v-row>
