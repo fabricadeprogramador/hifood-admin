@@ -28,32 +28,7 @@
       dark
       v-model="menuAparente"
     >
-      <v-sheet color="rgba(255, 255, 255, 0.1)">
-        <v-container>
-          <v-row style="height: 170px">
-            <v-col align-self="center">
-              <v-row
-                align="center"
-                justify="center"
-              >
-                <v-avatar size="75">
-                  <v-img :src="user"></v-img>
-                </v-avatar>
-              </v-row>
-              <v-row
-                align="center"
-                justify="center"
-              >
-                <h3 style="margin-top: 10px">Bem vindo, Usuário</h3>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-sheet>
-
-      <v-divider></v-divider>
-
-      <v-list>
+      <v-list class="mt-10">
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
