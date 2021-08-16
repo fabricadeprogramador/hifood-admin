@@ -25,23 +25,33 @@
         <v-col class="d-flex" cols="12" sm="6" md="2">
           <v-select
             :items="categoriaProdutos"
-            filled
             label="Categoria"
+            v-model="filtro"
+            filled
             dense
+            single-line
           ></v-select>
         </v-col>
 
         <v-col class="d-flex" cols="12" sm="6" md="2">
-          <v-select :items="situacao" filled label="Situação" dense></v-select>
+          <v-select
+            :items="situacao"
+            label="Situação"
+            v-model="filtro"
+            filled
+            dense
+            single-line
+          ></v-select>
         </v-col>
 
         <v-col class="d-flex" cols="12" sm="6" md="3">
           <v-text-field
-            v-model="buscar"
+            v-model="filtro"
             append-icon="mdi-magnify"
             label="Buscar"
             single-line
-            hide-details
+            filled
+            dense
           ></v-text-field>
         </v-col>
       </v-row>
@@ -54,7 +64,7 @@
               :headers="headers"
               :items="produtos"
               :items-per-page="10"
-              :search="buscar"
+              :search="filtro"
               class="elevation-1"
             >
               <template v-slot:item.actions="{ item }">
@@ -104,7 +114,7 @@ export default {
       exibeListaProdutos: true,
       exibeComponentProdutoAdd: false,
       exibeComponentProdutoEdit: false,
-      buscar: "",
+      filtro: "",
       situacao: ["Ativo", "Inativo"],
       produtos: [
         {
