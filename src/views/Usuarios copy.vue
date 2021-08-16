@@ -11,10 +11,12 @@
           <v-toolbar-title>Cadastro de usuários</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
-          <v-btn color="primary" dark class="mb-2" @click="novoUsuario">
-            Novo usuário
-          </v-btn>
+              <v-btn color="primary" dark class="mb-2" @click="novoUsuario">
+                Novo usuário
+              </v-btn>
           <v-dialog v-model="dialog" max-width="500px">
+         
+        
             <v-card>
               <v-form ref="form" v-model="valid">
                 <v-card-title>
@@ -68,12 +70,7 @@
                   <v-btn color="blue darken-1" text @click="close">
                     Cancelar
                   </v-btn>
-                  <v-btn
-                    color="blue darken-1"
-                    text
-                    @click="save"
-                    :disabled="!valid"
-                  >
+                  <v-btn color="blue darken-1" text @click="save" :disabled="!valid">
                     Salvar
                   </v-btn>
                 </v-card-actions>
@@ -94,26 +91,23 @@
         ></v-checkbox>
       </template>
     </v-data-table>
-
-    <v-snackbar v-model="msg" :timeout="timeout" rounded color="success">
-      {{ text }}
-
-      <template v-slot:action="{ attrs }">
-        <v-btn color="white" text v-bind="attrs" @click="msg = false" >
-          Fechar
-        </v-btn>
-      </template>
-    </v-snackbar>
+    <v-alert
+      v-if="msg"
+      class="mt-6"
+      type="success"
+      border="left"
+      close-text="Close Alert"
+      dark
+      dismissible
+      @click="fechaMsg()"
+      >Usuário cadastrado com sucesso.</v-alert
+    >
   </div>
 </template>
 
 <script>
 export default {
   data: () => ({
-    
-    text: "Usuário salvo com sucesso!",
-    timeout: 4000,
-
     isReadOnly: true,
     //Validações do cadastro de usuários
     valid: true,
@@ -250,10 +244,10 @@ export default {
     fechaMsg() {
       this.msg = false;
     },
-    novoUsuario() {
-      this.editedItem.tipo = "Admin";
+    novoUsuario(){
+      this.editedItem.tipo = "Admin"
       this.dialog = true;
-    },
+    }
   },
 };
 </script>
