@@ -20,16 +20,18 @@
         <v-col sm="12" md="12">
           <v-card>
             <v-card-text>
-              <v-form>
+              <v-form ref="form" v-model="valid">
                 <v-text-field
                   label="Nome do produto"
                   v-model="produtoAtual.nome"
+                  :rules="validaNomeProduto"
                   required
                 ></v-text-field>
 
                 <v-text-field
                   label="Descrição"
                   v-model="produtoAtual.descricao"
+                  :rules="validaDescricaoProduto"
                   required
                 ></v-text-field>
 
@@ -38,15 +40,17 @@
                     <v-text-field
                       label="Valor"
                       v-model="produtoAtual.valor"
+                      :rules="validaPrecoProduto"
                       required
                     ></v-text-field>
                   </v-col>
 
                   <v-col cols="12" sm="12" md="3">
                     <v-select
-                      label="categoria"
+                      label="Categoria"
                       :items="arrayCategoria"
                       v-model="produtoAtual.categoria"
+                      :rules="validaCategoriaProduto"
                       required
                     ></v-select>
                   </v-col>
@@ -55,11 +59,22 @@
                     <v-text-field
                       label="Quantidade Disponível"
                       v-model="produtoAtual.qtdDisponivel"
+                      :rules="validaQtdProduto"
                       required
                     ></v-text-field>
                   </v-col>
 
                   <v-col cols="12" sm="12" md="3">
+                    <v-select
+                      label="Situação"
+                      :items="situacao"
+                      v-model="produtoAtual.situacao"
+                      :rules="validaSituacaoProduto"
+                      required
+                    ></v-select>
+                  </v-col>
+
+                  <v-col cols="12" md="12">
                     <v-file-input
                       v-model="produtoAtual.imagem"
                       label="Foto"
@@ -70,7 +85,13 @@
                   </v-col>
                 </v-row>
 
-                <v-btn color="#232B45" dark class="mr-4" @click="salvar()">
+                <v-btn
+                  color="#232B45"
+                  dark
+                  class="mr-4"
+                  @click="salvar()"
+                  :disabled="!valid"
+                >
                   Adicionar
                 </v-btn>
               </v-form>
@@ -91,6 +112,7 @@
         >Produto adicionado com sucesso.</v-alert
       >
 
+      {{valid}}
       <!-- {{ arrayProdutos }} -->
       <!-- {{ arrayCategoria }} -->
     </template>
@@ -104,6 +126,16 @@ export default {
   data: () => ({
     produtoAtual: {},
     msg: false,
+    situacao: ["Ativo", "Inativo"],
+    
+    // validação do formulário
+    valid: true,
+    validaNomeProduto: [(v) => !!v || "Informe o nome do produto"],
+    validaDescricaoProduto: [(v) => !!v || "Descreva os itens do seu produto"],
+    validaPrecoProduto: [(v) => !!v || "Informe o preço do produto"],
+    validaCategoriaProduto: [(v) => !!v || "Selecione uma categoria para o produto"],
+    validaQtdProduto: [(v) => !!v || "Informe a quantidade disponível em estoque"],
+    validaSituacaoProduto: [(v) => !!v || "Selecione um status"]
   }),
 
   methods: {
@@ -122,6 +154,7 @@ export default {
     },
 
     validar(p) {
+      //this.$refs.form.validate();
       for (let i = 0; i < this.arrayProdutos.length; i++) {
         if (this.arrayProdutos[i].nome == p.nome) {
           return false;

@@ -23,47 +23,62 @@
         <v-col sm="12" md="9">
           <v-card>
             <v-card-text>
-              <v-form>
+              <v-form ref="form" v-model="valid">
                 <v-text-field
                   label="Nome do produto"
                   v-model="produtoEdit.nome"
+                  :rules="validaNomeProduto"
                   required
                 ></v-text-field>
 
                 <v-text-field
                   label="Descrição"
                   v-model="produtoEdit.descricao"
+                  :rules="validaDescricaoProduto"
                   required
                 ></v-text-field>
 
                 <v-row>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" sm="6" md="3">
                     <v-text-field
                       label="Valor"
                       v-model="produtoEdit.valor"
+                      :rules="validaPrecoProduto"
                       required
                     ></v-text-field>
                   </v-col>
 
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" sm="6" md="3">
                     <v-select
-                      label="categoria"
+                      label="Categoria"
                       :items="arrayCategoria"
                       v-model="produtoEdit.categoria"
+                      :rules="validaCategoriaProduto"
                       required
                     ></v-select>
                   </v-col>
 
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" sm="6" md="3">
                     <v-text-field
                       label="Quantidade Disponível"
                       v-model="produtoEdit.qtdDisponivel"
+                      :rules="validaQtdProduto"
                       required
                     ></v-text-field>
                   </v-col>
+
+                  <v-col cols="12" sm="12" md="3">
+                    <v-select
+                      label="Situação"
+                      :items="situacao"
+                      v-model="produtoEdit.situacao"
+                      :rules="validaSituacaoProduto"
+                      required
+                    ></v-select>
+                  </v-col>
                 </v-row>
 
-                <v-btn color="#232B45" dark class="mr-4" @click="atualizar()">
+                <v-btn color="#232B45" dark class="mr-4" @click="atualizar()" :disabled="!valid">
                   Atualizar
                 </v-btn>
               </v-form>
@@ -114,7 +129,17 @@ export default {
   data: () => ({
     produtoEdit: {},
     editedIndex: -1,
-    msg: false
+    msg: false,
+    situacao: ["Ativo", "Inativo"],
+
+    // validação do formulário
+    valid: true,
+    validaNomeProduto: [(v) => !!v || "Informe o nome do produto"],
+    validaDescricaoProduto: [(v) => !!v || "Descreva os itens do seu produto"],
+    validaPrecoProduto: [(v) => !!v || "Informe o preço do produto"],
+    validaCategoriaProduto: [(v) => !!v || "Selecione uma categoria para o produto"],
+    validaQtdProduto: [(v) => !!v || "Informe a quantidade disponível em estoque"],
+    validaSituacaoProduto: [(v) => !!v || "Selecione um status"]
   }),
 
   created() {
