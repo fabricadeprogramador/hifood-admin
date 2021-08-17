@@ -71,7 +71,6 @@ export default {
         titulo: "Usuários",
         path: "/usuarios",
       },
-      { icone: "mdi-chart-line", titulo: "Relatórios", path: "/relatorios" },
     ],
   }),
   methods: {
