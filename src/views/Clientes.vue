@@ -1,86 +1,87 @@
 <template>
 	<div>
-		<v-data-table
-			:headers="headers"
-			:items="clientes"
-			:search="buscar"
-			sort-by="name"
-			class="elevation-1"
-			v-if="mostrarClientes"
-		>
-			<template v-slot:top>
-				<v-toolbar flat>
-					<v-toolbar-title>Clientes Cadastrados</v-toolbar-title>
-					<v-divider
-						class="mx-4"
-						inset
-						vertical
-					></v-divider>
-					<v-spacer></v-spacer>
-					<v-text-field
-						v-model="buscar"
-						append-icon="mdi-magnify"
-						label="Buscar"
-						single-line
-						hide-details
-					></v-text-field>
-					<v-dialog
-						v-model="dialogDetalhes"
-						persistent
-						width="400px"
-					>
-						<v-card class="pa-3">
-							<v-card-actions>
-								<v-spacer></v-spacer>
-								<v-btn
-									color="#232B45"
-									dark
-									small
-									@click="fecharDetalhes"
-								>Fechar</v-btn>
-							</v-card-actions>
-							<v-card-title class="text-h6">Dados pessoais:</v-card-title>
-							<v-card-text class="text-subtitle-1"><b>Nome completo:</b> {{ clienteAtual.nome }} </v-card-text>
-							<v-card-text class="text-subtitle-1"><b>Email:</b> {{ clienteAtual.email }} </v-card-text>
-							<v-card-text class="text-subtitle-1"><b>CPF:</b> {{ clienteAtual.cpf }} </v-card-text>
-							<v-card-text class="text-subtitle-1"><b>RG:</b> {{ clienteAtual.rg }} </v-card-text>
-							<v-card-text class="text-subtitle-1">
-								<b>Data de nascimento:</b> {{ clienteAtual.dataNasc }}
-							</v-card-text>
-							<v-card-text class="text-subtitle-1"><b>Telefone:</b> {{ clienteAtual.telefone }} </v-card-text>
-							<v-card-title class="text-h6">Dados de entrega:</v-card-title>
-							<v-card-text class="text-subtitle-1"><b>CEP:</b> {{ clienteAtual.endereco.cep }} </v-card-text>
-							<v-card-text class="text-subtitle-1"><b>Cidade:</b> {{ clienteAtual.endereco.cidade }}</v-card-text>
-							<v-card-text class="text-subtitle-1"><b>UF:</b> {{ clienteAtual.endereco.uf }} </v-card-text>
-							<v-card-text class="text-subtitle-1"><b>Endereço:</b> {{ clienteAtual.endereco.rua }} </v-card-text>
-							<v-card-text class="text-subtitle-1"><b>Número:</b> {{ clienteAtual.endereco.num }} </v-card-text>
-							<v-card-text class="text-subtitle-1"><b>Bairro:</b> {{ clienteAtual.endereco.bairro }} </v-card-text>
-						</v-card>
-					</v-dialog>
-				</v-toolbar>
-			</template>
+		<div v-if="mostrarClientes">
+			<h1>Clientes Cadastrados</h1>
+			<v-text-field
+				v-model="buscar"
+				append-icon="mdi-magnify"
+				label="Buscar"
+				single-line
+				hide-details
+			></v-text-field>
+			<v-data-table
+				:headers="headers"
+				:items="clientes"
+				:search="buscar"
+				sort-by="name"
+				class="elevation-1"
+			>
+				<template v-slot:top>
+					<v-toolbar flat>
+						<v-dialog
+							v-model="dialogDetalhes"
+							persistent
+							width="400px"
+						>
+							<v-card class="pa-3">
+								<v-card-actions>
+									<v-spacer></v-spacer>
+									<v-btn
+										color="#232B45"
+										dark
+										small
+										@click="fecharDetalhes"
+									>Fechar</v-btn>
+								</v-card-actions>
+								<v-card-title class="text-h6">Dados pessoais:</v-card-title>
+								<v-card-text class="text-subtitle-1"><b>Nome completo:</b> {{ clienteAtual.nome }} </v-card-text>
+								<v-card-text class="text-subtitle-1"><b>Email:</b> {{ clienteAtual.email }} </v-card-text>
+								<v-card-text class="text-subtitle-1"><b>CPF:</b> {{ clienteAtual.cpf }} </v-card-text>
+								<v-card-text class="text-subtitle-1"><b>RG:</b> {{ clienteAtual.rg }} </v-card-text>
+								<v-card-text class="text-subtitle-1">
+									<b>Data de nascimento:</b> {{ clienteAtual.dataNasc }}
+								</v-card-text>
+								<v-card-text class="text-subtitle-1"><b>Telefone:</b> {{ clienteAtual.telefone }} </v-card-text>
+								<v-card-title class="text-h6">Dados de entrega:</v-card-title>
+								<v-card-text class="text-subtitle-1"><b>CEP:</b> {{ clienteAtual.endereco.cep }} </v-card-text>
+								<v-card-text class="text-subtitle-1"><b>Cidade:</b> {{ clienteAtual.endereco.cidade }}</v-card-text>
+								<v-card-text class="text-subtitle-1"><b>UF:</b> {{ clienteAtual.endereco.uf }} </v-card-text>
+								<v-card-text class="text-subtitle-1"><b>Endereço:</b> {{ clienteAtual.endereco.rua }} </v-card-text>
+								<v-card-text class="text-subtitle-1"><b>Número:</b> {{ clienteAtual.endereco.num }} </v-card-text>
+								<v-card-text class="text-subtitle-1"><b>Bairro:</b> {{ clienteAtual.endereco.bairro }} </v-card-text>
+							</v-card>
+						</v-dialog>
+					</v-toolbar>
+				</template>
 
-			<template v-slot:item.detalhes="{ item }">
-				<v-icon
-					size="25px"
-					@click="abrirDetalhes(item)"
-				> mdi-magnify </v-icon>
-			</template>
+				<template v-slot:item.detalhes="{ item }">
+					<v-icon
+						size="25px"
+						@click="abrirDetalhes(item)"
+					> mdi-magnify </v-icon>
+				</template>
 
-			<template v-slot:item.compras="{ item }">
-				<v-icon
-					size="25px"
-					class="my-2"
-					@click="compraCliente(item)"
-				>mdi-cart-outline</v-icon>
-			</template>
-		</v-data-table>
-		<Compras
-			v-else
-			:cliente="clienteAtual.nome"
-			:comprasCliente="comprasClienteAtual"
-			@voltar-clientes="fecharJanelaCompras"
-		/>
+				<template v-slot:item.compras="{ item }">
+					<v-icon
+						size="25px"
+						class="my-2"
+						@click="compraCliente(item)"
+					>mdi-cart-outline</v-icon>
+				</template>
+			</v-data-table>
+		</div>
+		<div v-else>
+			<v-btn
+				color="#232B45"
+				class="ma-3"
+				dark
+				@click="fecharJanelaCompras"
+			>Voltar</v-btn>
+			<Compras
+				:cliente="clienteAtual.nome"
+				:comprasCliente="comprasClienteAtual"
+			/>
+		</div>
 	</div>
 </template>
 
