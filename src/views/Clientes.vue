@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <h1>Clientes</h1>
+        <h1>Clientes <v-spam v-if="subTituloPagina"><v-icon>mdi-chevron-right</v-icon> Vendas</v-spam></h1>
         <p>Aqui você pode visualizar os dados de seus clientes</p>
       </v-col>
     </v-row>
@@ -17,8 +17,6 @@
         ></v-text-field>
       </template>
       <template v-else>
-        <h1>Compras</h1>
-        <v-divider class="mx-4" vertical></v-divider>
         <v-toolbar-title style="color: #0a1330">{{
           clienteAtual.nome
         }}</v-toolbar-title>
@@ -111,6 +109,7 @@ export default {
     buscar: "",
     dialogDetalhes: false,
     mostrarClientes: true,
+    subTituloPagina: false,
     headers: [
       {
         text: "Nome",
@@ -490,9 +489,11 @@ export default {
         }
       }
       this.mostrarClientes = false;
+      this.subTituloPagina = true;
     },
     fecharJanelaCompras() {
       this.mostrarClientes = true;
+      this.subTituloPagina = false;
     },
   },
 };
