@@ -1,5 +1,11 @@
 <template>
   <div>
+    <v-row>
+      <v-col>
+        <h1>Usuários</h1>
+        <p>Aqui você pode visualizar os dados de usuários</p>
+      </v-col>
+    </v-row>
     <v-data-table
       :headers="headers"
       :items="usuarios"

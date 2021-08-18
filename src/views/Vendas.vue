@@ -1,11 +1,15 @@
 <template>
   <div>
+    <v-row>
+      <v-col>
+        <h1>Vendas</h1>
+        <p>Aqui você pode visualizar as vendas realizadas</p>
+      </v-col>
+    </v-row>
     <v-toolbar
       flat
       class="mb-3"
     >
-      <h1 style="color: #0A1330">Vendas realizadas</h1>
-      <v-spacer></v-spacer>
       <v-text-field
         v-model="buscar"
         append-icon="mdi-magnify"
