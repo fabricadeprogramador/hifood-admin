@@ -324,9 +324,21 @@ export default {
           break;
       }
       this.date.ano = ano;
-      this.date.hora = hora;
-      this.date.minuto = minuto;
-      this.date.segundo = segundo;
+      if (hora < 10) {
+        this.date.hora = "0" + hora;
+      } else {
+        this.date.hora = hora;
+      }
+      if (minuto < 10) {
+        this.date.minuto = "0" + minuto;
+      } else {
+        this.date.minuto = minuto;
+      }
+      if (segundo < 10) {
+        this.date.segundo = "0" + segundo;
+      } else {
+        this.date.segundo = segundo;
+      }
     },
   },
   //Colocando o relógio em tempo real - usando created + setInterval.
