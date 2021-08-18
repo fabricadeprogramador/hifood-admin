@@ -1,5 +1,12 @@
 <template>
+
   <div>
+        <v-breadcrumbs :items="breadcrumbsItems">
+      <template v-slot:divider>
+        <v-icon>mdi-chevron-right</v-icon>
+      </template>
+    </v-breadcrumbs>
+
     <v-data-table
       :headers="headers"
       :items="usuarios"
@@ -99,7 +106,7 @@
       {{ text }}
 
       <template v-slot:action="{ attrs }">
-        <v-btn color="white" text v-bind="attrs" @click="msg = false" >
+        <v-btn color="white" text v-bind="attrs" @click="msg = false">
           Fechar
         </v-btn>
       </template>
@@ -110,7 +117,22 @@
 <script>
 export default {
   data: () => ({
-    
+
+    //intens para breadcrumb
+    breadcrumbsItems: [
+        {
+          text: 'Home',
+          disabled: false,
+          href: '#',
+        },
+        {
+          text: 'Usuários',
+          disabled: false,
+          href: '#/usuarios',
+        },
+      ],
+
+    //Mensagem de sucesso via snackbar
     text: "Usuário salvo com sucesso!",
     timeout: 4000,
 
