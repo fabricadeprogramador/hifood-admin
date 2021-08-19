@@ -136,6 +136,7 @@ export default {
     buscar: "",
     dialogDetalhes: false,
     mostrarClientes: true,
+    subTituloPagina: false,
     headers: [
       {
         text: "Nome",
@@ -515,9 +516,11 @@ export default {
         }
       }
       this.mostrarClientes = false;
+      this.subTituloPagina = true;
     },
     fecharJanelaCompras() {
       this.mostrarClientes = true;
+      this.subTituloPagina = false;
     },
   },
 };
