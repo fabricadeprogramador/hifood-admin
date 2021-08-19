@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar
       app
-      color="#FF8900"
+      color="#FE7028"
       dark
       clipped-left
       height="70px"
@@ -21,7 +21,7 @@
     </v-app-bar>
 
     <v-navigation-drawer
-      color="#0A1330"
+      color="#2F302B"
       width="300px"
       app
       clipped
