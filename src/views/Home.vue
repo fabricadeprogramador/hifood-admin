@@ -1,5 +1,5 @@
 <template>
-  <v-div>
+  <div>
     <!-- Divisão superior da tela -->
     <v-row
       class="pt-2"
@@ -9,7 +9,7 @@
       <v-col>
         <v-card
           elevation="2"
-          color="#B71C1C"
+          color="#61625E"
           class="text-center pa-3"
           min-width="350"
           dark
@@ -25,7 +25,7 @@
       <v-col>
         <v-card
           elevation="2"
-          color="#880E4F"
+          color="#61625E"
           class="text-center pa-3"
           min-width="350"
           dark
@@ -41,7 +41,7 @@
       <v-col>
         <v-card
           elevation="2"
-          color="#283593"
+          color="#61625E"
           class="text-center pa-3"
           min-width="350"
           dark
@@ -57,7 +57,7 @@
       <v-col>
         <v-card
           elevation="2"
-          color="#006064"
+          color="#61625E"
           class="text-center pa-3"
           min-width="350"
           dark
@@ -82,7 +82,7 @@
         <v-card
           elevation="2"
           class="text-center"
-          color="#0A1330"
+          color="#2F302B"
           min-width="700"
           height="350"
           dark
@@ -110,7 +110,7 @@
         <v-card
           elevation="2"
           class="text-center px-3"
-          color="#0A1330"
+          color="#2F302B"
           height="350"
           min-width="700"
           dark
@@ -143,7 +143,7 @@
       <v-col>
         <v-card
           elevation="2"
-          color="#006064"
+          color="#61625E"
           class="text-center pa-3"
           min-width="350"
           dark
@@ -160,7 +160,7 @@
       <v-col>
         <v-card
           elevation="2"
-          color="#880E4F"
+          color="#61625E"
           class="text-center pa-3"
           min-width="350"
           dark
@@ -176,7 +176,7 @@
       <v-col>
         <v-card
           elevation="2"
-          color="#283593"
+          color="#61625E"
           class="text-center pa-3"
           min-width="350"
           dark
@@ -192,7 +192,7 @@
       <v-col>
         <v-card
           elevation="2"
-          color="#B71C1C"
+          color="#61625E"
           class="text-center pa-3"
           min-width="350"
           dark
@@ -206,7 +206,7 @@
         </v-card>
       </v-col>
     </v-row>
-  </v-div>
+  </div>
 </template>
 
 <script>
