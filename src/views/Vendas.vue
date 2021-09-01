@@ -1,19 +1,20 @@
 <template>
   <div>
-    <v-toolbar
-      flat
-      class="mb-3"
-    >
-      <h1 style="color: #0A1330">Vendas realizadas</h1>
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="buscar"
-        append-icon="mdi-magnify"
-        label="Buscar"
-        single-line
-        hide-details
-      ></v-text-field>
-    </v-toolbar>
+    <v-card flat>
+      <v-card-title class="text-h5">Vendas</v-card-title>
+      <v-card-subtitle>Aqui você pode visualizar as vendas realizadas</v-card-subtitle>
+      <v-toolbar flat>
+        <v-text-field
+          v-model="buscar"
+          append-icon="mdi-magnify"
+          label="Buscar"
+          single-line
+          outlined
+          dense
+        ></v-text-field>
+        <v-spacer></v-spacer>
+      </v-toolbar>
+    </v-card>
     <Compras :comprasCliente="compras"></Compras>
   </div>
 </template>
