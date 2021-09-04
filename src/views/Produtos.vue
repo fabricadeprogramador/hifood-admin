@@ -7,16 +7,16 @@
           <p>Aqui você pode adicionar, editar ou consultar seus produtos</p>
         </v-col>
       </v-row>
-
+      
       <v-row>
         <v-col>
           <v-btn @click="btnAddProduto()">
             <v-icon>mdi-plus</v-icon> Adicionar
           </v-btn>
 
-          <v-btn @click="btnModoVisualizacao()" class="ml-4">
+          <!-- <v-btn @click="btnModoVisualizacao()" class="ml-4">
             <v-icon>mdi-eye </v-icon> Modo Visualização
-          </v-btn>
+          </v-btn> -->
         </v-col>
       </v-row>
 
@@ -102,6 +102,8 @@
 </template>
 
 <script>
+import ProdutoClient from "./../ApiClient/ProdutoClient";
+
 import produtoAdd from "../components/ProdutoAdd.vue";
 import produtoEdit from "../components/ProdutoEdit.vue";
 
@@ -116,71 +118,7 @@ export default {
       exibeComponentProdutoEdit: false,
       filtro: "",
       situacao: ["Ativo", "Inativo"],
-      produtos: [
-        {
-          nome: "Hot-Dog Simples",
-          descricao: "Pão, Salsicha, Batata-palha, Molho Especial e Tomate",
-          valor: 12.9,
-          categoria: "Lanches",
-          qtdDisponivel: 100,
-          situacao: "Ativo",
-          imagem:
-            "https://www.receiteria.com.br/wp-content/uploads/receitas-de-molho-de-cachorro-quente-1.jpg",
-        },
-        {
-          nome: "Hot-Dog Especial",
-          descricao:
-            "Pão, Salsicha, Presunto, Mussarela, Batata-palha, Molho Especial, Tomate, Orégano",
-          valor: 17.95,
-          categoria: "Lanches",
-          qtdDisponivel: 55,
-          situacao: "Ativo",
-          imagem:
-            "https://www.dicasdemulher.com.br/wp-content/uploads/2018/03/cachorro-quente-3.jpg",
-        },
-        {
-          nome: "Frango ao Creme",
-          descricao:
-            "Massa feita no forno à lenha, Frango, Creme, Presunto, Mussarela, Molho Especial, Tomate, Orégano",
-          valor: 35.8,
-          categoria: "Pizzas",
-          qtdDisponivel: 105,
-          situacao: "Ativo",
-          imagem:
-            "https://t2.rg.ltmcdn.com/pt/images/4/1/2/img_pizza_de_liquidificador_de_frango_6214_orig.jpg",
-        },
-        {
-          nome: "Moda da Casa",
-          descricao:
-            "Massa feita no forno à lenha, Creme, Carne Seca, Presunto, Mussarela, Molho Especial, Tomate, Orégano",
-          valor: 44.7,
-          categoria: "Pizzas",
-          qtdDisponivel: 99,
-          situacao: "Ativo",
-          imagem:
-            "https://www.ocladapizza.com.br/wp-content/uploads/2017/02/massa-da-pizza-conhe%C3%A7a-6-ingredientes-e-suas-fun%C3%A7%C3%B5es-blog-pizzaria-o-cla-da-pizza-660x420.jpg",
-        },
-        {
-          nome: "Porção Simples",
-          descricao: "Frango, Salada, Tomate, Molho Especial",
-          valor: 12.2,
-          categoria: "Porções",
-          qtdDisponivel: 99,
-          situacao: "Ativo",
-          imagem:
-            "https://img.elo7.com.br/product/original/22565B3/adesivo-parede-prato-comida-frango-salada-restaurante-lindo-adesivo-parede.jpg",
-        },
-        {
-          nome: "Prato Completo",
-          descricao: "Arroz, Feijão, Salada, Tomate e Bife Aceboladol",
-          valor: 13.4,
-          categoria: "Pratos",
-          qtdDisponivel: 100,
-          situacao: "Ativo",
-          imagem:
-            "https://www.istoedinheiro.com.br/wp-content/uploads/sites/17/2019/08/din1135-sustenta5.jpg",
-        },
-      ],
+      produtos: [],
       produtoEdit: {},
       categoriaProdutos: [
         "Lanches",
@@ -209,6 +147,10 @@ export default {
     };
   },
 
+  mounted() {
+    this.buscarTodosProdutos();
+  },
+
   methods: {
     btnAddProduto() {
       this.exibeListaProdutos = false;
@@ -234,13 +176,18 @@ export default {
       this.produtoEdit = item;
     },
 
-    // [NÃO ATIVAR ESTA FUNÇÃO] Não poderá excluir o produto
-    // deleteItem(item) {
-    //   this.editedIndex = this.produtos.indexOf(item);
-    //   if(this.editedIndex > -1) {
-    //      this.produtos.splice(this.editedIndex, 1);
-    //   }
-    // },
+    // Requisições da API --------------------------
+
+    // Buscar todos produtos
+    async buscarTodosProdutos() {
+      let resposta = await ProdutoClient.buscarTodos();
+
+      if(resposta.status == 200) {
+        this.produtos = resposta.data
+      } else {
+        alert("Erro ao buscar dados na API!")
+      }
+    },
   },
 };
 </script>
