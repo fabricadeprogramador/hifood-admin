@@ -12,16 +12,7 @@
           width="600px"
         >
           <v-card class="pa-3">
-            <v-toolbar
-              flat
-              class="my-4"
-            >
-              <v-row>
-                <v-col>
-                  <v-card-title>Cliente: {{nomeAtual}}</v-card-title>
-                  <v-card-subtitle>Compra realizada em {{dataCompra}}</v-card-subtitle>
-                </v-col>
-              </v-row>
+            <v-toolbar flat>
               <v-spacer></v-spacer>
               <v-btn
                 color="#232B45"
@@ -30,6 +21,8 @@
                 @click="fecharDetalhes"
               >Fechar</v-btn>
             </v-toolbar>
+            <v-card-title>Cliente: {{nomeAtual}}</v-card-title>
+            <v-card-subtitle>Compra realizada em {{dataCompra}}</v-card-subtitle>
             <v-data-table
               :headers="cabecalhoDetalhes"
               :items="compraAtual"
