@@ -123,6 +123,8 @@
 </template>
 
 <script>
+import ProdutoClient from "./../ApiClient/ProdutoClient";
+
 export default {
   props: ["arrayProdutos", "objProdutoEdit", "arrayCategoria"],
 
@@ -156,12 +158,29 @@ export default {
       this.$emit("voltarPrincipal");
     },
 
-    atualizar() {
+    //VERSÃO COM API --------------
+    async atualizar() {
       if(this.editedIndex > -1) {
-        Object.assign(this.arrayProdutos[this.editedIndex], this.produtoEdit);
-        this.msg = true;
+        this.produtoEdit.imagem = "https://conteudo.imguol.com.br/c/entretenimento/9d/2020/05/26/hamburguer-recheado-na-churrasqueira-1590524861807_v2_4x3.jpg";
+        
+        let resposta = await ProdutoClient.editar(this.produtoEdit);
+
+        if(resposta.status == 200) {
+          this.arrayProdutos[this.editedIndex] = this.produtoEdit;
+          this.msg = true;
+        } else {
+          alert("Erro ao editar produto!");
+        }
       }
     },
+
+    //VERSÃO SEM API --------------
+    // atualizar() {
+    //   if(this.editedIndex > -1) {
+    //     Object.assign(this.arrayProdutos[this.editedIndex], this.produtoEdit);
+    //     this.msg = true;
+    //   }
+    // },
 
     fechaMsg() {
       this.msg = false;
