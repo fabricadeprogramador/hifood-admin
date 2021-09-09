@@ -15,7 +15,7 @@
         <v-spacer></v-spacer>
       </v-toolbar>
     </v-card>
-    <Compras :comprasCliente="compras"></Compras>
+    <Compras :comprasCliente="vendas"></Compras>
   </div>
 </template>
 
@@ -28,13 +28,29 @@ export default {
   components: { Compras },
   data() {
     return {
-      compras: [],
+      vendas: [],
     };
   },
   methods: {
     async buscarVendas() {
+      //Busca vendas na API
       let resposta = await VendaClient.buscarTodos();
-      this.compras = resposta.data;
+      this.vendas = resposta.data;
+      //Formata os dados
+      for (let i = 0; i < this.vendas.length; i++) {
+        //Formata o valor total em R$
+        let valorTotal = parseFloat(this.vendas[i].valorTotal);
+        this.vendas[i].valorTotal = "R$ " + valorTotal.toFixed(2);
+        //Formata o valor unitario e o valor total de cada produto em R$
+        let produtos = this.vendas[i].produtos;
+        for (let i = 0; i < produtos.length; i++) {
+          let valorUnitario = parseFloat(produtos[i].valorUnit);
+          produtos[i].valorUnit = "R$ " + valorUnitario.toFixed(2);
+          let valorTotalProduto = parseFloat(produtos[i].valorTotalProduto);
+          produtos[i].valorTotalProduto = "R$ " + valorTotalProduto.toFixed(2);
+        }
+        this.vendas[i].produtos = produtos;
+      }
     },
   },
   mounted() {

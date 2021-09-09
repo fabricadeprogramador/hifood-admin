@@ -13,6 +13,7 @@
         >
           <v-card class="pa-3">
             <v-toolbar flat>
+              <v-card-title>Cliente: {{nomeAtual}}</v-card-title>
               <v-spacer></v-spacer>
               <v-btn
                 color="#232B45"
@@ -21,7 +22,6 @@
                 @click="fecharDetalhes"
               >Fechar</v-btn>
             </v-toolbar>
-            <v-card-title>Cliente: {{nomeAtual}}</v-card-title>
             <v-card-subtitle>Compra realizada em {{dataCompra}}</v-card-subtitle>
             <v-data-table
               :headers="cabecalhoDetalhes"
@@ -62,15 +62,15 @@ export default {
           value: "cpf",
         },
         { text: "Data", value: "data" },
-        { text: "Quantidade", value: "qtdTotal" },
+        { text: "Quantidade de produtos", value: "qtdTotal" },
         { text: "Valor total", value: "valorTotal" },
         { text: "Detalhes", value: "detalhes", sortable: false },
       ],
       cabecalhoDetalhes: [
         { text: "Produto", value: "nomeProduto" },
-        { text: "Valor unitário (R$)", value: "valorUnit" },
+        { text: "Valor unitário", value: "valorUnit" },
         { text: "Quantidade", value: "qtd" },
-        { text: "Valor total (R$)", value: "valorTotalProduto" },
+        { text: "Valor total", value: "valorTotalProduto" },
       ],
       compraAtual: [],
       dataCompra: "",
@@ -81,17 +81,7 @@ export default {
     abrirDetalhes(compraCliente) {
       this.dataCompra = compraCliente.data;
       this.nomeAtual = compraCliente.nome;
-      this.compraAtual = [];
-      for (let i = 0; i < compraCliente.produtos.length; i++) {
-        let compra = compraCliente.produtos[i];
-        this.compraAtual.push(compra);
-      }
-      for (let i = 0; i < this.compraAtual.length; i++) {
-        let valorUnitario = parseFloat(this.compraAtual[i].valorUnit);
-        let valorTotal = parseFloat(this.compraAtual[i].valorTotalProduto);
-        this.compraAtual[i].valorUnit = valorUnitario.toFixed(2);
-        this.compraAtual[i].valorTotalProduto = valorTotal.toFixed(2);
-      }
+      this.compraAtual = compraCliente.produtos;
       this.dialogDetalhes = true;
     },
     fecharDetalhes() {
