@@ -210,13 +210,17 @@
 </template>
 
 <script>
+import ClienteClient from "../ApiClient/ClienteClient.js";
+import VendaClient from "../ApiClient/VendaClient.js";
+import ProdutoClient from "../ApiClient/ProdutoClient.js";
+
 export default {
   name: "Home",
   data: () => ({
-    qtdClientes: 1367,
-    qtdProdutos: 67,
-    qtdVendas: 1792,
-    valorVendas: "10.371,53",
+    qtdClientes: 0,
+    qtdProdutos: 0,
+    qtdVendas: 0,
+    valorVendas: 0,
     qtdTeste: 0,
     bestSellerCat: "Lanches",
     leastSoldCat: "Saladas",
@@ -340,11 +344,35 @@ export default {
         this.date.segundo = segundo;
       }
     },
+    async buscarClientes() {
+      let resposta = await ClienteClient.buscarTodos();
+      this.qtdClientes = resposta.data.length;
+    },
+    async buscarVendas() {
+      let resposta = await VendaClient.buscarTodos();
+      this.qtdVendas = resposta.data.length;
+
+      let vendas = resposta.data;
+      let valorTotal = 0;
+      for (let i = 0; i < vendas.length; i++) {
+        valorTotal = valorTotal + vendas[i].valorTotal;
+      }
+      this.valorVendas = valorTotal.toFixed(2);
+    },
+    async buscarProdutos() {
+      let resposta = await ProdutoClient.buscarTodos();
+      this.qtdProdutos = resposta.data.length;
+    },
   },
   //Colocando o relógio em tempo real - usando created + setInterval.
   //Para o relógio atualizar fora de tempo real, usar "mounted".
   created() {
     setInterval(this.horaAtual, 1000);
+  },
+  mounted() {
+    this.buscarClientes();
+    this.buscarVendas();
+    this.buscarProdutos();
   },
 };
 </script>
