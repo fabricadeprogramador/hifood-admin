@@ -21,6 +21,7 @@
 
 <script>
 import Compras from "../components/Compras.vue";
+import VendaClient from "../ApiClient/VendaClient.js";
 
 export default {
   name: "Vendas",
@@ -29,6 +30,15 @@ export default {
     return {
       compras: [],
     };
+  },
+  methods: {
+    async buscarVendas() {
+      let resposta = await VendaClient.buscarTodos();
+      this.compras = resposta.data;
+    },
+  },
+  mounted() {
+    this.buscarVendas();
   },
 };
 </script>
