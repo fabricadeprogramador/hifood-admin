@@ -49,6 +49,8 @@
                     <v-select
                       label="Categoria"
                       :items="arrayCategoria"
+                      item-text="categoria"
+                      item-value="categoria"
                       v-model="produtoAtual.categoria"
                       :rules="validaCategoriaProduto"
                       required
@@ -141,8 +143,8 @@ export default {
   }),
 
   methods: {
-    voltar() {
-      this.$emit("voltarPrincipal");
+    voltar(mensagem) {
+      this.$emit("voltarPrincipal", mensagem);
     },
 
     //VERSÃO COM API --------------
@@ -156,6 +158,8 @@ export default {
           this.arrayProdutos.push(resposta.data);
           this.produtoAtual = {};
           this.msg = true;
+
+          this.voltar("Registro salvo com sucesso!");
         } else {
           alert("Erro ao cadastrar produto!");
         }

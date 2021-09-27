@@ -23,8 +23,10 @@
       <!-- FILTROS -->
       <v-row>
         <v-col class="d-flex" cols="12" sm="6" md="2">
-          <v-select
+          <v-select 
             :items="categoriaProdutos"
+            item-text="categoria"
+            item-value="categoria"
             label="Categoria"
             v-model="filtro"
             filled
@@ -57,6 +59,17 @@
       </v-row>
       <!-- FIM FILTROS -->
 
+      <v-alert
+        v-if="msg"
+        class="mt-6"
+        type="success"
+        border="left"
+        close-text="Close Alert"
+        dark
+        dismissible
+        >{{msg}}</v-alert
+      >
+
       <v-row>
         <v-col>
           <template v-if="!visualizarLinha">
@@ -87,7 +100,7 @@
         v-if="exibeComponentProdutoAdd"
         :arrayProdutos="produtos"
         :arrayCategoria="categoriaProdutos"
-        @voltarPrincipal="fechaComponenteProdutoAdd()"
+        @voltarPrincipal="fechaComponenteProdutoAdd"
       />
 
       <produtoEdit
@@ -95,14 +108,16 @@
         :objProdutoEdit="produtoEdit"
         :arrayProdutos="produtos"
         :arrayCategoria="categoriaProdutos"
-        @voltarPrincipal="fechaComponenteProdutoEdit()"
+        @voltarPrincipal="fechaComponenteProdutoEdit"
       />
     </template>
+    {{msg}}
   </div>
 </template>
 
 <script>
 import ProdutoClient from "./../ApiClient/ProdutoClient";
+import CategoriaClient from "./../ApiClient/CategoriaClient";
 
 import produtoAdd from "../components/ProdutoAdd.vue";
 import produtoEdit from "../components/ProdutoEdit.vue";
@@ -117,17 +132,11 @@ export default {
       exibeComponentProdutoAdd: false,
       exibeComponentProdutoEdit: false,
       filtro: "",
+      msg: '',
       situacao: ["Ativo", "Inativo"],
       produtos: [],
+      categoriaProdutos: [],
       produtoEdit: {},
-      categoriaProdutos: [
-        "Lanches",
-        "Bebidas",
-        "Pizzas",
-        "Pratos",
-        "Sobremesas",
-        "Porções",
-      ],
       editedIndex: -1,
       visualizarLinha: false,
       headers: [
@@ -149,6 +158,7 @@ export default {
 
   mounted() {
     this.buscarTodosProdutos();
+    this.buscarTodasCategorias();
   },
 
   methods: {
@@ -159,9 +169,12 @@ export default {
 
     btnModoVisualizacao() {},
 
-    fechaComponenteProdutoAdd() {
+    fechaComponenteProdutoAdd(mensagem) {
       this.exibeListaProdutos = true;
       this.exibeComponentProdutoAdd = false;
+      this.msg = mensagem;
+
+      console.log('Mensagem: '+mensagem);
     },
 
     fechaComponenteProdutoEdit() {
@@ -184,10 +197,23 @@ export default {
 
       if(resposta.status == 200) {
         this.produtos = resposta.data
+        console.log(this.produtos);
+
       } else {
         alert("Erro ao buscar dados na API!")
       }
     },
+
+    async buscarTodasCategorias() {
+      let resposta = await CategoriaClient.buscarTodos();
+
+      if(resposta.status == 200) {
+        this.categoriaProdutos = resposta.data;
+        console.log(this.categoriaProdutos);
+      } else {
+        alert("Erro ao buscar categoria na API!");
+      }
+    }
   },
 };
 </script>

@@ -20,11 +20,7 @@ export default {
     },
 
     editar(produto) {
-        return axios.put(API_HOST, produto).then((resposta) => {
-            return resposta;
-        }).catch((error) => {
-            return error;
-        });
+        return axios.put(API_HOST, produto).then((resposta) => resposta).catch((error) => error);
     },
 
     buscarPorId() {},
