@@ -128,6 +128,7 @@
 
 <script>
 import Compras from "../components/Compras.vue";
+import ClienteClient from "../ApiClient/ClienteClient.js";
 
 export default {
   components: { Compras },
@@ -150,120 +151,7 @@ export default {
       { text: "Detalhes", value: "detalhes", sortable: false },
       { text: "Compras", value: "compras", sortable: false },
     ],
-    clientes: [
-      {
-        nome: "Jão da Silva",
-        email: "jao.silva@gmail.com",
-        cpf: "123.456.789-10",
-        telefone: "(67) 99997 7777",
-        rg: "2435466687",
-        dataNasc: "10/10/1960",
-        endereco: {
-          cep: "15.966-000",
-          cidade: "Campo Grande",
-          bairro: "Centro",
-          uf: "MS",
-          rua: "Av. Brasil",
-          num: "555",
-        },
-      },
-      {
-        nome: "Maria dos Santos",
-        email: "maria.dsantos@gmail.com",
-        cpf: "719.876.543-21",
-        telefone: "(11) 99797 7787",
-        rg: "24935466687",
-        dataNasc: "10/10/1960",
-        endereco: {
-          cep: "15.966-000",
-          cidade: "Campo Grande",
-          bairro: "Centro",
-          uf: "MS",
-          rua: "Av. Brasil",
-          num: "555",
-        },
-      },
-      {
-        nome: "Zé do Caixão",
-        email: "jose_zc@gmail.com",
-        cpf: "121.212.343-33",
-        telefone: "(67) 99997 4737",
-        rg: "2435466687",
-        dataNasc: "10/10/1960",
-        endereco: {
-          cep: "15.966-000",
-          cidade: "Campo Grande",
-          bairro: "Centro",
-          uf: "MS",
-          rua: "Av. Brasil",
-          num: "555",
-        },
-      },
-      {
-        nome: "Joselito da Silva",
-        email: "js_silva@gmail.com",
-        cpf: "934.456.731-05",
-        telefone: "(51) 99997 7774",
-        rg: "2435466687",
-        dataNasc: "10/10/1960",
-        endereco: {
-          cep: "79.966-000",
-          cidade: "Campo Grande",
-          bairro: "Centro",
-          uf: "MS",
-          rua: "Av. Brasil",
-          num: "555",
-        },
-      },
-      {
-        nome: "Luís da Silva",
-        email: "luis_silva@gmail.com",
-        cpf: "134.671.167-15",
-        telefone: "(43) 99998 1234",
-        rg: "2435466687",
-        dataNasc: "10/10/1960",
-        endereco: {
-          cep: "18.966-050",
-          cidade: "Campo Grande",
-          bairro: "Centro",
-          uf: "MS",
-          rua: "Av. Brasil",
-          num: "555",
-        },
-      },
-      {
-        nome: "Ana dos Santos",
-        email: "santos_ana@gmail.com",
-        cpf: "239.456.789-37",
-        telefone: "(32) 99994 1894",
-        rg: "2435466687",
-        dataNasc: "10/10/1960",
-        endereco: {
-          cep: "19.966-000",
-          cidade: "Campo Grande",
-          bairro: "Centro",
-          uf: "MS",
-          rua: "Av. Brasil",
-          num: "555",
-        },
-      },
-      {
-        nome: "Tião da Silva",
-        email: "t_silva@gmail.com",
-        cpf: "167.138.789-44",
-        telefone: "(48) 98734 6713",
-        rg: "2435466687",
-        dataNasc: "10/10/1960",
-        endereco: {
-          cep: "76.966-100",
-          cidade: "Campo Grande",
-          bairro: "Centro",
-          uf: "MS",
-          rua: "Av. Brasil",
-          num: "555",
-        },
-      },
-    ],
+    clientes: [],
     clienteAtual: {
       nome: "",
       email: "",
@@ -281,220 +169,12 @@ export default {
       },
     },
     comprasClienteAtual: [],
-    compras: [
-      {
-        nome: "Jão da Silva",
-        cpf: "123.456.789-10",
-        data: "06/10/2020",
-        produtos: [
-          {
-            nomeProduto: "Produto 1",
-            qtd: 1,
-            valorUnit: 20,
-            valorTotalProduto: 0,
-          },
-          {
-            nomeProduto: "Produto 2",
-            qtd: 1,
-            valorUnit: 16,
-            valorTotalProduto: 0,
-          },
-        ],
-        valorTotal: 0,
-        qtdTotal: 0,
-      },
-      {
-        nome: "Jão da Silva",
-        cpf: "123.456.789-10",
-        data: "01/03/2021",
-        produtos: [
-          {
-            nomeProduto: "Produto 1",
-            qtd: 1,
-            valorUnit: 8,
-            valorTotalProduto: 0,
-          },
-          {
-            nomeProduto: "Produto 2",
-            qtd: 2,
-            valorUnit: 11,
-            valorTotalProduto: 0,
-          },
-          {
-            nomeProduto: "Produto 3",
-            qtd: 1,
-            valorUnit: 13,
-            valorTotalProduto: 0,
-          },
-        ],
-        valorTotal: 0,
-        qtdTotal: 0,
-      },
-      {
-        nome: "Maria dos Santos",
-        cpf: "719.876.543-21",
-        data: "09/04/2021",
-        produtos: [
-          {
-            nomeProduto: "Produto 1",
-            qtd: 1,
-            valorUnit: 17,
-            valorTotalProduto: 0,
-          },
-          {
-            nomeProduto: "Produto 2",
-            qtd: 2,
-            valorUnit: 8,
-            valorTotalProduto: 0,
-          },
-          {
-            nomeProduto: "Produto 3",
-            qtd: 1,
-            valorUnit: 4,
-            valorTotalProduto: 0,
-          },
-        ],
-        valorTotal: 0,
-        qtdTotal: 0,
-      },
-      {
-        nome: "Tião da Silva",
-        cpf: "167.138.789-44",
-        data: "03/07/2021",
-        produtos: [
-          {
-            nomeProduto: "Produto 1",
-            qtd: 3,
-            valorUnit: 9,
-            valorTotalProduto: 0,
-          },
-        ],
-        valorTotal: 0,
-        qtdTotal: 0,
-      },
-      {
-        nome: "Zé do Caixão",
-        cpf: "121.212.343-33",
-        data: "24/02/2021",
-        produtos: [
-          {
-            nomeProduto: "Produto 1",
-            qtd: 1,
-            valorUnit: 21,
-            valorTotalProduto: 0,
-          },
-          {
-            nomeProduto: "Produto 2",
-            qtd: 2,
-            valorUnit: 16,
-            valorTotalProduto: 0,
-          },
-          {
-            nomeProduto: "Produto 3",
-            qtd: 1,
-            valorUnit: 9,
-            valorTotalProduto: 0,
-          },
-        ],
-        valorTotal: 0,
-        qtdTotal: 0,
-      },
-      {
-        nome: "Joselito da Silva",
-        cpf: "934.456.731-05",
-        data: "03/10/2020",
-        produtos: [
-          {
-            nomeProduto: "Produto 1",
-            qtd: 1,
-            valorUnit: 21,
-            valorTotalProduto: 0,
-          },
-          {
-            nomeProduto: "Produto 2",
-            qtd: 2,
-            valorUnit: 12,
-            valorTotalProduto: 0,
-          },
-          {
-            nomeProduto: "Produto 3",
-            qtd: 1,
-            valorUnit: 2,
-            valorTotalProduto: 0,
-          },
-          {
-            nomeProduto: "Produto 4",
-            qtd: 2,
-            valorUnit: 32,
-            valorTotalProduto: 0,
-          },
-        ],
-        valorTotal: 0,
-        qtdTotal: 0,
-      },
-      {
-        nome: "Luís da Silva",
-        cpf: "134.671.167-15",
-        data: "08/05/2021",
-        produtos: [
-          {
-            nomeProduto: "Produto 1",
-            qtd: 3,
-            valorUnit: 17,
-            valorTotalProduto: 0,
-          },
-          {
-            nomeProduto: "Produto 2",
-            qtd: 2,
-            valorUnit: 21,
-            valorTotalProduto: 0,
-          },
-        ],
-        valorTotal: 0,
-        qtdTotal: 0,
-      },
-      {
-        nome: "Ana dos Santos",
-        cpf: "239.456.789-37",
-        data: "01/03/2021",
-        produtos: [
-          {
-            nomeProduto: "Produto 1",
-            qtd: 4,
-            valorUnit: 20,
-            valorTotalProduto: 0,
-          },
-          {
-            nomeProduto: "Produto 2",
-            qtd: 2,
-            valorUnit: 13,
-            valorTotalProduto: 0,
-          },
-        ],
-        valorTotal: 0,
-        qtdTotal: 0,
-      },
-    ],
   }),
 
-  created() {
-    this.initialize();
-  },
-
   methods: {
-    initialize() {
-      for (let i = 0; i < this.compras.length; i++) {
-        let compra = this.compras[i];
-        compra.qtdTotal = 0;
-        compra.valorTotal = 0;
-        for (let i = 0; i < compra.produtos.length; i++) {
-          let produto = compra.produtos[i];
-          produto.valorTotalProduto = produto.valorUnit * produto.qtd;
-          compra.valorTotal = compra.valorTotal + produto.valorTotalProduto;
-          compra.qtdTotal = compra.qtdTotal + produto.qtd;
-        }
-        compra.valorTotal = "R$ " + compra.valorTotal.toFixed(2);
-      }
+    async buscarClientes() {
+      let resposta = await ClienteClient.buscarTodos();
+      this.clientes = resposta.data;
     },
     abrirDetalhes(cliente) {
       this.clienteAtual = cliente;
@@ -507,14 +187,12 @@ export default {
     //Recebe o objeto com o cliente atual
     //Envia o nome do cliente para a tela de compras
     //Compara o CPF do cliente com o CPF das compras realizadas no app
-    compraCliente(cliente) {
+    async compraCliente(cliente) {
       this.clienteAtual.nome = cliente.nome;
-      this.comprasClienteAtual = [];
-      for (let i = 0; i < this.compras.length; i++) {
-        if (cliente.cpf == this.compras[i].cpf) {
-          this.comprasClienteAtual.push(this.compras[i]);
-        }
-      }
+
+      let resposta = await ClienteClient.buscarCompras(cliente.cpf);
+      this.comprasClienteAtual = resposta.data;
+
       this.mostrarClientes = false;
       this.subTituloPagina = true;
     },
@@ -522,6 +200,9 @@ export default {
       this.mostrarClientes = true;
       this.subTituloPagina = false;
     },
+  },
+  mounted() {
+    this.buscarClientes();
   },
 };
 </script>

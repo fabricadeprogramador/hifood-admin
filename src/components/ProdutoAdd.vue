@@ -49,6 +49,8 @@
                     <v-select
                       label="Categoria"
                       :items="arrayCategoria"
+                      item-text="categoria"
+                      item-value="categoria"
                       v-model="produtoAtual.categoria"
                       :rules="validaCategoriaProduto"
                       required
@@ -120,6 +122,8 @@
 </template>
 
 <script>
+import ProdutoClient from "./../ApiClient/ProdutoClient";
+
 export default {
   props: ["arrayProdutos", "arrayCategoria"],
 
@@ -139,19 +143,39 @@ export default {
   }),
 
   methods: {
-    voltar() {
-      this.$emit("voltarPrincipal");
+    voltar(mensagem) {
+      this.$emit("voltarPrincipal", mensagem);
     },
 
-    salvar() {
-      if (this.validar(this.produtoAtual)) {
-        this.produtoAtual.imagem =
-          "https://conteudo.imguol.com.br/c/entretenimento/9d/2020/05/26/hamburguer-recheado-na-churrasqueira-1590524861807_v2_4x3.jpg";
-        this.arrayProdutos.push(this.produtoAtual);
-        this.produtoAtual = {};
-        this.msg = true;
+    //VERSÃO COM API --------------
+    async salvar() {
+      if(this.validar(this.produtoAtual)) {
+        this.produtoAtual.imagem = "https://conteudo.imguol.com.br/c/entretenimento/9d/2020/05/26/hamburguer-recheado-na-churrasqueira-1590524861807_v2_4x3.jpg";
+
+        let resposta = await ProdutoClient.inserir(this.produtoAtual);
+
+        if(resposta.status == 200) {
+          this.arrayProdutos.push(resposta.data);
+          this.produtoAtual = {};
+          this.msg = true;
+
+          this.voltar("Registro salvo com sucesso!");
+        } else {
+          alert("Erro ao cadastrar produto!");
+        }
       }
     },
+
+    //VERSÃO SEM API --------------
+    // salvar() {
+    //   if (this.validar(this.produtoAtual)) {
+    //     this.produtoAtual.imagem =
+    //       "https://conteudo.imguol.com.br/c/entretenimento/9d/2020/05/26/hamburguer-recheado-na-churrasqueira-1590524861807_v2_4x3.jpg";
+    //     this.arrayProdutos.push(this.produtoAtual);
+    //     this.produtoAtual = {};
+    //     this.msg = true;
+    //   }
+    // },
 
     validar(p) {
       //this.$refs.form.validate();
