@@ -115,6 +115,8 @@
 </template>
 
 <script>
+
+import UsuariosClient from '@/ApiClient/UsuariosClient.js'
 export default {
   data: () => ({
 
@@ -193,67 +195,36 @@ export default {
     },
   },
 
-  created() {
-    this.initialize();
+  mounted() {
+    this.buscarUsuario()
   },
 
   methods: {
-    initialize() {
-      this.usuarios = [
-        {
-          email: "mariajs@gmail.com",
-          senha: "123dadsff",
-          tipo: "Admin",
-          ativo: true,
-        },
-        {
-          email: "frozen@gmail.com",
-          senha: "123trtrhnf",
-          tipo: "Admin",
-          ativo: true,
-        },
-        {
-          email: "joaquina@hotmail.com",
-          senha: "1345trhnf",
-          tipo: "Admin",
-          ativo: true,
-        },
-        {
-          email: "jozefah@zipmail.com",
-          senha: "1345trhnf",
-          tipo: "Admin",
-          ativo: true,
-        },
-      ];
+    async buscarUsuario() {
+      let resposta = await UsuariosClient.buscarTodos()
+      if(resposta.status == 200) {
+        this.usuarios = resposta.data
+      }else {
+        alert('erro ao buscar usuário')
+      }
+    },
+    
+    async buscarPorId() {
+      let resposta = await UsuariosClient.buscarPorId()
+      if(resposta.status == 200) {
+        this.usuarios = resposta.data
+  }  
+  
     },
 
-    editItem(item) {
-      this.editedIndex = this.usuarios.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialog = true;
-    },
-
-    deleteItem(item) {
-      this.editedIndex = this.usuarios.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialogDelete = true;
-    },
-
-    deleteItemConfirm() {
-      this.usuarios.splice(this.editedIndex, 1);
-      this.closeDelete();
-    },
+    async editar(usuario) {
+      let resposta = await UsuariosClient.editar(usuario)
+      if (resposta.status == 200) {
+          this.usuario.push(resposta.data)
+      }},
 
     close() {
       this.dialog = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
-    },
-
-    closeDelete() {
-      this.dialogDelete = false;
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
