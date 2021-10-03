@@ -232,14 +232,22 @@ export default {
     },
 
     save() {
-      if (this.editedIndex > -1) {
-        Object.assign(this.usuarios[this.editedIndex], this.editedItem);
-      } else {
-        this.usuarios.push(this.editedItem);
+        if (resposta.status == 200) {
+          this.usuario.push(resposta.data)
       }
       this.close();
       this.msg = true;
     },
+
+    // save() {
+    //   if (this.editedIndex > -1) {
+    //     Object.assign(this.usuarios[this.editedIndex], this.editedItem);
+    //   } else {
+    //     this.usuarios.push(this.editedItem);
+    //   }
+    //   this.close();
+    //   this.msg = true;
+    // },
     fechaMsg() {
       this.msg = false;
     },
