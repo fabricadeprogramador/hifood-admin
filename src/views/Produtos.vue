@@ -148,7 +148,7 @@ export default {
         },
         { text: "Descrição", value: "descricao" },
         { text: "Valor", value: "valor" },
-        { text: "Categoria", value: "categoria" },
+        { text: "Categoria", value: "categoria.categoria" },
         { text: "Qtd Disponivel", value: "qtdDisponivel" },
         { text: "Situação", value: "situacao" },
         { text: "Ações", value: "actions", sortable: false },
@@ -209,7 +209,7 @@ export default {
 
       if(resposta.status == 200) {
         this.categoriaProdutos = resposta.data;
-        console.log(this.categoriaProdutos);
+        //console.log(this.categoriaProdutos);
       } else {
         alert("Erro ao buscar categoria na API!");
       }

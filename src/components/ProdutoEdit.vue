@@ -53,7 +53,7 @@
                       label="Categoria"
                       :items="arrayCategoria"
                       item-text="categoria"
-                      item-value="categoria"
+                      return-object
                       v-model="produtoEdit.categoria"
                       :rules="validaCategoriaProduto"
                       required
@@ -166,8 +166,9 @@ export default {
         this.produtoEdit.imagem = "https://conteudo.imguol.com.br/c/entretenimento/9d/2020/05/26/hamburguer-recheado-na-churrasqueira-1590524861807_v2_4x3.jpg";
 
         let resposta = await ProdutoClient.editar(this.produtoEdit);
-        console.log(resposta.status);
+        
         if(resposta.status == 200) {
+          console.log(resposta.status);
           this.arrayProdutos[this.editedIndex] = this.produtoEdit;
           this.msg = true;
         } else {
