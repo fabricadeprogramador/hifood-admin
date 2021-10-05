@@ -50,7 +50,7 @@
                       label="Categoria"
                       :items="arrayCategoria"
                       item-text="categoria"
-                      item-value="categoria"
+                      return-object
                       v-model="produtoAtual.categoria"
                       :rules="validaCategoriaProduto"
                       required
@@ -114,9 +114,9 @@
         >Produto adicionado com sucesso.</v-alert
       >
 
-      {{valid}}
+      <!-- {{valid}} -->
       <!-- {{ arrayProdutos }} -->
-      <!-- {{ arrayCategoria }} -->
+      {{ arrayCategoria }}
     </template>
   </div>
 </template>
@@ -155,6 +155,7 @@ export default {
         let resposta = await ProdutoClient.inserir(this.produtoAtual);
 
         if(resposta.status == 200) {
+          //console.log(this.produtoAtual)
           this.arrayProdutos.push(resposta.data);
           this.produtoAtual = {};
           this.msg = true;
