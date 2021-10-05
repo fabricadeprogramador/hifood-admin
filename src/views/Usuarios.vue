@@ -1,7 +1,6 @@
 <template>
-
   <div>
-        <v-breadcrumbs :items="breadcrumbsItems">
+    <v-breadcrumbs :items="breadcrumbsItems">
       <template v-slot:divider>
         <v-icon>mdi-chevron-right</v-icon>
       </template>
@@ -115,24 +114,22 @@
 </template>
 
 <script>
-
-import UsuariosClient from '@/ApiClient/UsuariosClient.js'
+import UsuariosClient from "@/ApiClient/UsuariosClient.js";
 export default {
   data: () => ({
-
     //intens para breadcrumb
     breadcrumbsItems: [
-        {
-          text: 'Home',
-          disabled: false,
-          href: '#',
-        },
-        {
-          text: 'Usuários',
-          disabled: false,
-          href: '#/usuarios',
-        },
-      ],
+      {
+        text: "Home",
+        disabled: false,
+        href: "#",
+      },
+      {
+        text: "Usuários",
+        disabled: false,
+        href: "#/usuarios",
+      },
+    ],
 
     //Mensagem de sucesso via snackbar
     text: "Usuário salvo com sucesso!",
@@ -196,32 +193,39 @@ export default {
   },
 
   mounted() {
-    this.buscarUsuario()
+    this.buscarUsuario();
   },
 
   methods: {
     async buscarUsuario() {
-      let resposta = await UsuariosClient.buscarTodos()
-      if(resposta.status == 200) {
-        this.usuarios = resposta.data
-      }else {
-        alert('erro ao buscar usuário')
+      let resposta = await UsuariosClient.buscarTodos();
+      if (resposta.status == 200) {
+        this.usuarios = resposta.data;
+      } else {
+        alert("erro ao buscar usuário");
       }
     },
-    
+
     async buscarPorId() {
-      let resposta = await UsuariosClient.buscarPorId()
-      if(resposta.status == 200) {
-        this.usuarios = resposta.data
-  }  
-  
+      let resposta = await UsuariosClient.buscarPorId();
+      if (resposta.status == 200) {
+        this.usuarios = resposta.data;
+      }
     },
 
-    async editar(usuario) {
-      let resposta = await UsuariosClient.editar(usuario)
-      if (resposta.status == 200) {
-          this.usuario.push(resposta.data)
-      }},
+    // async editar(usuario) {
+    //   let resposta = await UsuariosClient.editar(usuario);
+    //   if (resposta.status == 200) {
+    //     this.usuario.push(resposta.data);
+    //   }
+    // },
+
+      async  editItem(item) {
+      this.editedIndex = this.usuarios.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialog = true;
+      
+    },
 
     close() {
       this.dialog = false;
@@ -231,23 +235,19 @@ export default {
       });
     },
 
-    save() {
-        if (resposta.status == 200) {
-          this.usuario.push(resposta.data)
+   async save() {
+      if (this.editedIndex > -1) {
+          await UsuariosClient.editar(this.editedItem);
+        } else {
+          await UsuariosClient.inserir(this.editedItem);
       }
       this.close();
+      this.buscarUsuario();
       this.msg = true;
     },
 
-    // save() {
-    //   if (this.editedIndex > -1) {
-    //     Object.assign(this.usuarios[this.editedIndex], this.editedItem);
-    //   } else {
-    //     this.usuarios.push(this.editedItem);
-    //   }
-    //   this.close();
-    //   this.msg = true;
-    // },
+
+    
     fechaMsg() {
       this.msg = false;
     },
