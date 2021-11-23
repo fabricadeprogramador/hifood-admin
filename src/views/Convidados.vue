@@ -11,7 +11,9 @@
 </template>
 
 <script>
-  import ConvidadoClient from "@/ApiClient/ConvidadoClient"
+  import { mapActions } from "vuex"
+  import { actionTypes, mutationTypes } from "@/constants"
+
   export default {
     data() {
       return {
@@ -30,32 +32,40 @@
     },
 
     methods: {
-      async buscarConvidados() {
-        let resposta = await ConvidadoClient.buscarTodos()
+      ...mapActions([actionTypes.CONVIDADO.BUSCAR_TODOS_CONVIDADO]),
 
-        if (resposta.status == 200) {
-          this.convidados = resposta.data
-          console.log(resposta.data)
-        } else {
-          console.log(resposta)
-          alert("Erro ao buscar convidados!")
+      async buscarConvidados() {
+        try {
+          let resposta = await this.buscarTodosConvidados()
+
+          if (resposta.status == 200) {
+            this.convidados = resposta.data
+          } else {
+            this.$store.commit(mutationTypes.ALERTA.EXIBIR_ALERTA, {
+              tipo: "error",
+              msg: "Erro ao buscar convidados!"
+            })
+          }
+        } catch (error) {
+          this.$store.commit(mutationTypes.ALERTA.EXIBIR_ALERTA, {
+            tipo: "error",
+            msg: "Erro ao buscar convidados!"
+          })
         }
       },
 
       async inserirNovoConvidado() {
-        let novoConvidado = {
-          nome: "Guilherme Prado",
-          idade: 31,
-          sexo: "Masculino"
-        }
-
-        let resposta = await ConvidadoClient.inserir(novoConvidado)
-
-        if (resposta.status == 200) {
-          this.convidados.push(resposta.data)
-        } else {
-          alert("Erro ao inserir convidado!")
-        }
+        // let novoConvidado = {
+        //   nome: "Guilherme Prado",
+        //   idade: 31,
+        //   sexo: "Masculino"
+        // }
+        // let resposta = await ConvidadoClient.inserir(novoConvidado)
+        // if (resposta.status == 200) {
+        //   this.convidados.push(resposta.data)
+        // } else {
+        //   alert("Erro ao inserir convidado!")
+        // }
       }
     }
   }
