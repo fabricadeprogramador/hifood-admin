@@ -7,7 +7,7 @@
           <p>Aqui você pode adicionar, editar ou consultar seus produtos</p>
         </v-col>
       </v-row>
-      
+
       <v-row>
         <v-col>
           <v-btn @click="btnAddProduto()">
@@ -23,7 +23,7 @@
       <!-- FILTROS -->
       <v-row>
         <v-col class="d-flex" cols="12" sm="6" md="2">
-          <v-select 
+          <v-select
             :items="categoriaProdutos"
             item-text="categoria"
             item-value="categoria"
@@ -67,7 +67,7 @@
         close-text="Close Alert"
         dark
         dismissible
-        >{{msg}}</v-alert
+        >{{ msg }}</v-alert
       >
 
       <v-row>
@@ -111,7 +111,7 @@
         @voltarPrincipal="fechaComponenteProdutoEdit"
       />
     </template>
-    {{msg}}
+    {{ msg }}
   </div>
 </template>
 
@@ -121,6 +121,9 @@ import CategoriaClient from "./../ApiClient/CategoriaClient";
 
 import produtoAdd from "../components/ProdutoAdd.vue";
 import produtoEdit from "../components/ProdutoEdit.vue";
+
+import { mapActions } from "vuex";
+import { actionTypes, mutationTypes } from "@/constants";
 
 export default {
   components: { produtoAdd, produtoEdit },
@@ -132,7 +135,7 @@ export default {
       exibeComponentProdutoAdd: false,
       exibeComponentProdutoEdit: false,
       filtro: "",
-      msg: '',
+      msg: "",
       situacao: ["Ativo", "Inativo"],
       produtos: [],
       categoriaProdutos: [],
@@ -162,6 +165,8 @@ export default {
   },
 
   methods: {
+    ...mapActions([actionTypes.PRODUTO.BUSCAR_TODOS_PRODUTO]),
+
     btnAddProduto() {
       this.exibeListaProdutos = false;
       this.exibeComponentProdutoAdd = true;
@@ -174,7 +179,7 @@ export default {
       this.exibeComponentProdutoAdd = false;
       this.msg = mensagem;
 
-      console.log('Mensagem: '+mensagem);
+      console.log("Mensagem: " + mensagem);
     },
 
     fechaComponenteProdutoEdit() {
@@ -195,25 +200,28 @@ export default {
     async buscarTodosProdutos() {
       let resposta = await ProdutoClient.buscarTodos();
 
-      if(resposta.status == 200) {
-        this.produtos = resposta.data
+      if (resposta.status == 200) {
+        this.produtos = resposta.data;
         console.log(this.produtos);
-
       } else {
-        alert("Erro ao buscar dados na API!")
+        this.$store.commit(mutationTypes.ALERTA.EXIBIR_ALERTA, {
+          tipo: "error",
+          msg: "Erro ao buscar produtos!",
+        });
+        //alert("Erro ao buscar dados na API!")
       }
     },
 
     async buscarTodasCategorias() {
       let resposta = await CategoriaClient.buscarTodos();
 
-      if(resposta.status == 200) {
+      if (resposta.status == 200) {
         this.categoriaProdutos = resposta.data;
         //console.log(this.categoriaProdutos);
       } else {
         alert("Erro ao buscar categoria na API!");
       }
-    }
+    },
   },
 };
 </script>
