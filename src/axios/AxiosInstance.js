@@ -11,7 +11,7 @@ export function getAxiosInstance() {
   }
 
   return axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "https://hifood-api.herokuapp.com/",
     timeout: 5000,
     headers: {
       "x-access-token": loggedUser.token
